@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-std::string display_text = "This is a test";
+std::string display_text = "porfavor ayuda telosuplico";
 
 
 using namespace physx;
@@ -73,7 +73,7 @@ void stepPhysics(bool interactive, double t)
 void cleanupPhysics(bool interactive)
 {
 	PX_UNUSED(interactive);
-
+	
 	// Rigid Body ++++++++++++++++++++++++++++++++++++++++++
 	gScene->release();
 	gDispatcher->release();
