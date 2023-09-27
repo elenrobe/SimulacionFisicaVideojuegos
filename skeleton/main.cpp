@@ -9,6 +9,7 @@
 #include "callbacks.hpp"
 
 #include <iostream>
+#include "particle.h"
 
 std::string display_text = "porfavor ayuda telosuplico";
 
@@ -29,6 +30,7 @@ PxPvd*                  gPvd        = NULL;
 PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
+std::unique_ptr<Particle> particle;
 
 
 // Initialize physics engine
@@ -54,6 +56,8 @@ void initPhysics(bool interactive)
 	sceneDesc.filterShader = contactReportFilterShader;
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
+
+	particle = std::make_unique<Particle>(Vector3(0, 0, 0), Vector3(5, 5, 0));
 	}
 
 
@@ -62,6 +66,8 @@ void initPhysics(bool interactive)
 // t: time passed since last call in milliseconds
 void stepPhysics(bool interactive, double t)
 {
+	particle->integrate(t);
+
 	PX_UNUSED(interactive);
 
 	gScene->simulate(t);

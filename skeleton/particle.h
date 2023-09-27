@@ -10,6 +10,6 @@ public:
 private:
 	Vector3 vel;
 	physx::PxTransform pose; // A render item le pasaremos la direccion de este pose, para que se actualice automaticamente
-	RenderItem* renderItem;
+	RenderItem* rI;
 };
 
