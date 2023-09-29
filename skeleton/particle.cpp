@@ -1,8 +1,10 @@
 #include "particle.h"
 
-Particle::Particle(Vector3 Pos, Vector3 Vel)
+Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping)
 {
-	vel = { Vel.x, Vel.y, Vel.z };
+	vel = Vel;
+	acc = Acc;
+	damping = Damping;
 	pose = physx::PxTransform(Pos);
 	physx::PxSphereGeometry sphere(3);
 	physx::PxShape* shape
@@ -20,4 +22,8 @@ Particle::~Particle()
 void Particle::integrate(double t)
 {
 	pose.p += vel * t;
+
+	vel += acc * t;
+
+	vel *= powf(damping, t); //dumping elevado a t
 }
