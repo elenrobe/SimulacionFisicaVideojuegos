@@ -10,8 +10,11 @@
 
 #include <iostream>
 #include "particle.h"
+#include "proyectil.h"
 
-std::string display_text = "porfavor ayuda telosuplico";
+#include "sceneManager.h"
+
+std::string display_text = "x,y,z = r,g,b";
 
 
 using namespace physx;
@@ -30,12 +33,13 @@ PxPvd*                  gPvd        = NULL;
 PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
-std::unique_ptr<Particle> particle;
-
+//std::unique_ptr<Projectile> particle;
+std::unique_ptr<SceneManager> sceneMng;
 
 // Initialize physics engine
 void initPhysics(bool interactive)
 {
+	sceneMng = std::make_unique<SceneManager>();
 	PX_UNUSED(interactive);
 
 	gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gAllocator, gErrorCallback);
@@ -57,7 +61,9 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 
-	particle = std::make_unique<Particle>(Vector3(0, 0, 0), Vector3(5, 5, 0), Vector3(0,5,0), 0.998);
+	//particle = std::make_unique<Projectile>(Projectile::BASE);
+	
+	sceneMng->initScene();
 	}
 
 
@@ -66,8 +72,8 @@ void initPhysics(bool interactive)
 // t: time passed since last call in milliseconds
 void stepPhysics(bool interactive, double t)
 {
-	particle->integrate(t);
-
+	//particle->integrate(t);
+	sceneMng->integrate(t);
 	PX_UNUSED(interactive);
 
 	gScene->simulate(t);
@@ -103,6 +109,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	//case ' ':	break;
 	case ' ':
 	{
+		sceneMng->shoot();
 		break;
 	}
 	default:

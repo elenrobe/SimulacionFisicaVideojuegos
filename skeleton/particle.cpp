@@ -1,17 +1,18 @@
 #include "particle.h"
 
-Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping)
+Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 {
 	vel = Vel;
 	acc = Acc;
-	damping = Damping;
-	pose = physx::PxTransform(Pos);
-	physx::PxSphereGeometry sphere(3);
+	pos = physx::PxTransform(Pos);
+	damping = 0.998;
+	physx::PxSphereGeometry sphere(1);
 	physx::PxShape* shape
 		=
 		CreateShape(sphere);
-	const Vector4 color = { 255, 255, 255, 1 }; rI = new RenderItem(shape, &pose, color);
-		
+	color = Color;
+	rI = new RenderItem(shape, &pos, color);
+	alive = true;
 }
 
 Particle::~Particle()
@@ -21,9 +22,10 @@ Particle::~Particle()
 
 void Particle::integrate(double t)
 {
-	pose.p += vel * t;
+	pos.p += vel * t;
 
 	vel += acc * t;
 
 	vel *= powf(damping, t); //dumping elevado a t
+
 }
