@@ -23,18 +23,18 @@ private:
 
 	Camera* cam;
 	void createAxis();
-	void toDelete();
 	std::vector<Particle*> proyectiles;
 	
 public:
 	SceneManager();
 	~SceneManager();
 
+	void toDelete();
 
 
 	void initScene();
 	void integrate(double t);
-	void shoot();
+	void shoot(char key);
 
 	//proyectiles
 	//a = cte

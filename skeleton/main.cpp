@@ -73,6 +73,8 @@ void initPhysics(bool interactive)
 void stepPhysics(bool interactive, double t)
 {
 	//particle->integrate(t);
+	sceneMng->toDelete();
+
 	sceneMng->integrate(t);
 	PX_UNUSED(interactive);
 
@@ -109,12 +111,13 @@ void keyPress(unsigned char key, const PxTransform& camera)
 	//case ' ':	break;
 	case ' ':
 	{
-		sceneMng->shoot();
 		break;
 	}
 	default:
 		break;
 	}
+	sceneMng->shoot(key);
+
 }
 
 void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)

@@ -13,7 +13,13 @@ void SceneManager::createAxis()
 void SceneManager::toDelete()
 {
 	//que recorra los objetos a ver si estan alive y los borre si no
-
+	for (int i = 0; i < proyectiles.size(); i++) {
+		//proyectiles[i]->Update(t);
+		if (!proyectiles[i]->getAlive()) {
+			delete proyectiles[i];
+			proyectiles.erase(proyectiles.begin() + i);
+		}
+	}
 }
 
 SceneManager::SceneManager()
@@ -36,13 +42,13 @@ void SceneManager::integrate(double t)
 {
 	for (auto p : proyectiles)
 	{
-		if (p != nullptr)
+		if (p != nullptr && p->getAlive())
 		{
 			p->integrate(t);
 
-			if (!p->getAlive()) {
+			if (!p->getAlive()) {/*
 				delete p;
-				p = nullptr;
+				p = nullptr;*/
 			}
 
 		}
@@ -50,15 +56,38 @@ void SceneManager::integrate(double t)
 
 }
 
-void SceneManager::shoot()
+void SceneManager::shoot(char key)
 {
 
-	//Vector3 vel = cam->getDir();
-
-	//vel *= 25;
-	//Vector3 pos = cam->getEye();
-	//Vector3 acc = { 0,-0.1,0 };
-
-	proyectiles.push_back(new Projectile(Projectile::BASE));
+	switch (toupper(key))
+	{
+	case ' ':
+	{
+		break;
+	}
+	case 'V':
+	{
+		proyectiles.push_back(new Projectile(Projectile::ARTILLERY));
+		break;
+	}
+	case 'B':
+	{
+		proyectiles.push_back(new Projectile(Projectile::PISTOL));
+		break;
+	}
+	case 'N':
+	{
+		proyectiles.push_back(new Projectile(Projectile::FIREBALL));
+		break;
+	}
+	case 'M':
+	{
+		proyectiles.push_back(new Projectile(Projectile::LASER));
+		break;
+	}
+	default:
+		proyectiles.push_back(new Projectile(Projectile::BASE));
+		break;
+	}
 
 }

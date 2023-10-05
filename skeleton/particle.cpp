@@ -13,6 +13,7 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 	color = Color;
 	rI = new RenderItem(shape, &pos, color);
 	alive = true;
+	tiempoVida = 1000;
 }
 
 Particle::~Particle()
@@ -27,5 +28,12 @@ void Particle::integrate(double t)
 	vel += acc * t;
 
 	vel *= powf(damping, t); //dumping elevado a t
+
+
+	if (tiempoVida > 0) {
+		tiempoVida--;
+	}
+	else alive = false;
+
 
 }
