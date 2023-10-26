@@ -6,8 +6,6 @@ using namespace std;
 class ParticleGenerator
 {
 public:
-	ParticleGenerator(string name, Vector3 pos, Vector3 vel, double genProb, int numParticles);
-	~ParticleGenerator() = default;
 	void setParticle(Particle* model);
 	virtual vector<Particle*> generateParticles() = 0;
 

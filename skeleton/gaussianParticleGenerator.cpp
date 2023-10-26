@@ -1,6 +1,6 @@
 #include "gaussianParticleGenerator.h"
 
-GaussianParticleGenerator::GaussianParticleGenerator(string name, Vector3 pos, Vector3 vel, double genProb, int numParticles, Particle* model) : ParticleGenerator(name, pos, vel, genProb, numParticles)
+GaussianParticleGenerator::GaussianParticleGenerator(string name, Vector3 pos, Vector3 vel, double genProb, int numParticles, Particle* model) 
 {
 
 }

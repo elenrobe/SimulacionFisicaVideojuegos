@@ -11,6 +11,7 @@
 #include <iostream>
 #include "particle.h"
 #include "proyectil.h"
+#include"particleSystem.h"
 
 #include "sceneManager.h"
 
@@ -33,13 +34,16 @@ PxPvd*                  gPvd        = NULL;
 PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
+
+
 //std::unique_ptr<Projectile> particle;
 std::unique_ptr<SceneManager> sceneMng;
+ParticleSystem* pSym;
 
 // Initialize physics engine
 void initPhysics(bool interactive)
 {
-	sceneMng = std::make_unique<SceneManager>();
+
 	PX_UNUSED(interactive);
 
 	gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gAllocator, gErrorCallback);
@@ -62,7 +66,9 @@ void initPhysics(bool interactive)
 	gScene = gPhysics->createScene(sceneDesc);
 
 	//particle = std::make_unique<Projectile>(Projectile::BASE);
-	
+
+	sceneMng = std::make_unique<SceneManager>();
+	pSym = new ParticleSystem();
 	sceneMng->initScene();
 	}
 
@@ -76,6 +82,7 @@ void stepPhysics(bool interactive, double t)
 	sceneMng->toDelete();
 
 	sceneMng->integrate(t);
+	pSym->update(t);
 	PX_UNUSED(interactive);
 
 	gScene->simulate(t);

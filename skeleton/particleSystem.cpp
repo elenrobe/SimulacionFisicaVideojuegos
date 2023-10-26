@@ -1,6 +1,7 @@
 #include "particleSystem.h"
+#include "uniformParticleGenerator.h"
 
-ParticleSystem::ParticleSystem() : _particles(0)
+ParticleSystem::ParticleSystem()
 {
 	// Particula uniforme
 	/*_particle_generators.push_back(new UniformParticleGenerator("uniform", { 10.0, 20.0, 10.0 }, { 5.0, -10.0, 5.0 }, 0.5,
@@ -9,6 +10,8 @@ ParticleSystem::ParticleSystem() : _particles(0)
 	// Particula gaussiana
 	/*_particle_generators.push_back(new GaussianParticleGenerator("gaussian", { 10.0, 20.0, 10.0 }, { 5.0, -10.0, 5.0 }, 0.5,
 		new Particle({ 5.0, 5.0, 5.0 }, { 10.0, 10.0, 0.0 }), { 10.0, 10.0, 10.0 }, { 5.0, 5.0, 5.0 }, 5.0));*/
+
+	createFogSystem();
 }
 
 ParticleSystem::~ParticleSystem()
@@ -23,30 +26,23 @@ ParticleSystem::~ParticleSystem()
 
 void ParticleSystem::update(double t)
 {
-	/*for (auto p = _particle_generators.begin(); p != _particle_generators.end(); ++p)
+	for (ParticleGenerator* g : _particle_generators)
 	{
-		if (_particles.size() < 10)
+		vector<Particle*> aux = g->generateParticles();
+		for (Particle* p : aux)
 		{
-			auto l = (*p)->generateParticles();
-
-			for (auto q = l.begin(); q != l.end(); ++q)
-				_particles.push_back((*q));
+			_particles.push_back(p);
 		}
-	}*/
+	}
 
 	// integrate de cada particula
-	auto p = _particles.begin();
-	while (p != _particles.end())
-	{
-		(*p)->integrate(t);
 
-		// Elimina la particula si ha muerto
-		if (!(*p)->getAlive())
-		{
-			delete (*p);
-			p = _particles.erase(p);
+	for (int i = 0; i < _particles.size(); i++) {
+		_particles[i]->integrate(t);
+		if (!_particles[i]->getAlive()) {
+			delete _particles[i];
+			_particles.erase(_particles.begin() + i);
 		}
-		else ++p;
 	}
 }
 
@@ -61,16 +57,26 @@ ParticleGenerator* ParticleSystem::getParticleGenerator(string name)
 
 void ParticleSystem::createFogSystem()
 {
-	/*Vector3 pos = { 0.0, 10.0, 0.0 };
-	Vector3 vel = { 0, 30.0, 0 };
+
+	//Particle* up = new Particle({ 0,0,0 }, { 0,0,0 }, { 0,-10,0 }, 1, 1, { 0,0,1 }, 1000, false);
+	//UniformParticleGenerator* uG = new UniformParticleGenerator({ -20,0,0 }, { 0,0,0 }, { 10,10,10 }, { 10,10,10 }, 1, 10);
+	//uG->setParticle(up);
+	//_particle_generators.push_back(uG);
+
+	Vector3 pos = { 0.0, 10.0, 0.0 };
+	Vector3 vel = { 1,1,1 };
 	Vector3 acc = { 0.0f, -9.8f, 0.0f };
 	double time = 5.0;
 	double mass = 0.5;
 	double damp = 0.95;
 	Particle* p = new Particle(pos, vel, acc);
-	p->setColor(Vector4{ 0.0f, 0.0f, 1.f, 1 });
+	p->setMass(2.0f);
+	p->setVel(vel * 35);
+	p->setAcc(Vector3(0, -1.0f, 0));
+	p->setDamping(0.99f);
+	p->setColor(Vector4{ 0.0f, 1.0f, 1.f, 0.5 });
 
-	UniformParticleGenerator *uniformGenerator = new UniformParticleGenerator("Uniforme", { 5, 0, 5 }, { 10, 0, 10 }, 0.8, 40, p);
+	UniformParticleGenerator *uniformGenerator = new UniformParticleGenerator("Uniforme", { 5, 0, 5 }, { 10, 0, 10 }, 1, 40, p, { 10,10,10 }, { 10,10,10 });
 
-	_particle_generators.push_back(uniformGenerator);*/
+	_particle_generators.push_back(uniformGenerator);
 }

@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
 #include"particle.h"
-#include"particleGenerator.h"
 
 using namespace std;
+class ParticleGenerator;
 
 class ParticleSystem
 {
@@ -19,5 +19,6 @@ public:
 protected:
 	vector<Particle*>_particles;
 	vector<ParticleGenerator*>_particle_generators;
+	Vector3 _gravity = { 0,-10,0 };
 
 };
