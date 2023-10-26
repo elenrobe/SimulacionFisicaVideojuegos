@@ -14,20 +14,22 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 	rI = new RenderItem(shape, &pos, color);
 	alive = true;
 	tiempoVida = 1000;
+	maxDistance = 100;
+	initPos = Pos;
 }
 
 Particle::~Particle()
 {
 	if (rI != nullptr) rI->release();
+	//delete  rI;
 }
 
 void Particle::integrate(double t)
 {
+	
 	pos.p += vel * t;
 
-	vel += acc * t;
-
-	vel *= powf(damping, t); //dumping elevado a t
+	vel = vel * pow(damping, t) + acc * t;
 
 
 	if (tiempoVida > 0) {
@@ -35,5 +37,18 @@ void Particle::integrate(double t)
 	}
 	else alive = false;
 
+	//Vector3 currentPosChange = { initPos.x + pos.p.x, initPos.y + pos.p.y, initPos.z + pos.p.z };
+	//Vector3 maxChange = { maxDistance, maxDistance, initPos.z + pos.p.z };
 
+	if (pos.p.z > maxDistance || pos.p.z < -maxDistance ||
+		pos.p.x > maxDistance || pos.p.x < -maxDistance
+		|| pos.p.y < 0) alive = false;
+
+
+}
+
+Particle* Particle::clone() const
+{
+	Particle* p = new Particle(pos.p, vel, acc, color);
+	return p;
 }

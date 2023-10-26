@@ -9,11 +9,15 @@ public:
 	~Particle();
 	void integrate(double t);
 
+	Particle* clone() const;
+
 	void setColor(Vector4 newColor) {rI->color = newColor;};
 	void setVel(Vector3 newVel) { vel = newVel; };
+	void setPos(Vector3 newPos) { pos.p = newPos; };
 	void setAcc(Vector3 newAcc) { acc = newAcc; }
 	void setMass(float newMass) { mass = newMass; }
 	void setDamping(float newDamping) { damping = newDamping; };
+	void setMaxDistance(float newDistance) { maxDistance = newDistance; };
 
 	void kill() { alive = false; };
 
@@ -34,6 +38,9 @@ private:
 	float mass;
 	float gravity;
 	float tiempoVida;
+	float maxDistance;
+	Vector3 initPos;
+
 	bool alive;
 
 };

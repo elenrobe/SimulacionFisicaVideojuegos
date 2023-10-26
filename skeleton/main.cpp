@@ -105,18 +105,7 @@ void keyPress(unsigned char key, const PxTransform& camera)
 {
 	PX_UNUSED(camera);
 
-	switch(toupper(key))
-	{
-	//case 'B': break;
-	//case ' ':	break;
-	case ' ':
-	{
-		break;
-	}
-	default:
-		break;
-	}
-	sceneMng->shoot(key);
+	sceneMng->keyPressed(key);
 
 }
 

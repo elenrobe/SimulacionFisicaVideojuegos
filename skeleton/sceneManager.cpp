@@ -3,10 +3,10 @@
 void SceneManager::createAxis()
 {
 
-	xAxis = std::make_unique<Particle>(Vector3(30, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector4(255, 0, 0, 1)); //red
-	yAxis = std::make_unique<Particle>(Vector3(0, 30, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector4(0, 255, 0, 1)); //green
-	zAxis = std::make_unique<Particle>(Vector3(0, 0, 40), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector4(0, 0, 255, 1)); ///blue
-	centerAxis = std::make_unique<Particle>(Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)); //clanco
+	xAxis = new Particle(Vector3(30, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector4(255, 0, 0, 1)); //red
+	yAxis = new Particle(Vector3(0, 30, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector4(0, 255, 0, 1)); //green
+	zAxis = new Particle(Vector3(0, 0, 40), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector4(0, 0, 255, 1)); ///blue
+	centerAxis = new Particle(Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)); //clanco
 
 }
 
@@ -29,6 +29,17 @@ SceneManager::SceneManager()
 
 SceneManager::~SceneManager()
 {
+	delete xAxis;
+	delete yAxis;
+	delete zAxis;
+	delete centerAxis;
+
+
+	/*
+	xAxis = nullptr;
+	std::unique_ptr<Particle> yAxis;
+	std::unique_ptr<Particle> zAxis;
+	std::unique_ptr<Particle> centerAxis;*/
 }
 
 void SceneManager::initScene()
@@ -46,10 +57,6 @@ void SceneManager::integrate(double t)
 		{
 			p->integrate(t);
 
-			if (!p->getAlive()) {/*
-				delete p;
-				p = nullptr;*/
-			}
 
 		}
 	}
@@ -90,4 +97,10 @@ void SceneManager::shoot(char key)
 		break;
 	}
 
+}
+
+
+void SceneManager::keyPressed(char key)
+{
+	shoot(key);
 }

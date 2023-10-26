@@ -2,7 +2,8 @@
 
 Projectile::Projectile(TYPE currentShotType) : Particle(GetCamera()->getEye(), GetCamera()->getDir(), GetCamera()->getDir())
 {
-	Vector3 dir = GetCamera()->getDir();
+	
+	Vector3 const dir = GetCamera()->getDir();
 	switch (currentShotType)
 	{
 	case PISTOL:
@@ -11,7 +12,6 @@ Projectile::Projectile(TYPE currentShotType) : Particle(GetCamera()->getEye(), G
 		setAcc(Vector3(0, -1.0f, 0));
 		setDamping(0.99f);
 		setColor({ 255, 255, 255, 1 });
-
 		break;
 	case ARTILLERY:
 		setMass(200.0f); // 200.0 Kg

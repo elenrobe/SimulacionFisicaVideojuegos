@@ -16,10 +16,10 @@
 class SceneManager
 {
 private:
-	std::unique_ptr<Particle> xAxis;
-	std::unique_ptr<Particle> yAxis;
-	std::unique_ptr<Particle> zAxis;
-	std::unique_ptr<Particle> centerAxis;
+	Particle* xAxis;
+	Particle*  yAxis;
+	Particle* zAxis;
+	Particle* centerAxis;
 
 	Camera* cam;
 	void createAxis();
@@ -35,6 +35,7 @@ public:
 	void initScene();
 	void integrate(double t);
 	void shoot(char key);
+	void keyPressed(char key);
 
 	//proyectiles
 	//a = cte
