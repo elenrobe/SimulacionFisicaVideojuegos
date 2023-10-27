@@ -1,7 +1,6 @@
 #pragma once
 #include "RenderUtils.hpp"
 #include <foundation/PxTransform.h>
-#include "particleGenerator.h"
 
 #include <list>
 #include <memory>
@@ -10,7 +9,6 @@ enum ParticleType
 {
 	SPHERE, FIREWORK
 };
-
 class Particle
 {
 
@@ -56,8 +54,6 @@ protected:
 
 	bool alive = true;
 	ParticleType type;
-
-	list<shared_ptr<ParticleGenerator>> _gens;
 
 };
 

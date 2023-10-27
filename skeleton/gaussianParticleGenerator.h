@@ -3,9 +3,6 @@
 #include <time.h>
 #include <random>
 
-class ParticleGenerator;
-
-
 class GaussianParticleGenerator : public ParticleGenerator
 {
 
