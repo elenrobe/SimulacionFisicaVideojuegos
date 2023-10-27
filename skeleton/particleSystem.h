@@ -5,7 +5,7 @@
 using namespace std;
 
 class ParticleGenerator;
-
+class Particle;
 class ParticleSystem
 {
 public:
@@ -14,7 +14,7 @@ public:
 	void update(double t);
 	ParticleGenerator* getParticleGenerator(string name);
 	void generateFireworkSystem();
-	void onParticleDeath();
+	void onParticleDeath(Particle* p);
 	void createFogSystem();
 	void createMangueraSystem();
 

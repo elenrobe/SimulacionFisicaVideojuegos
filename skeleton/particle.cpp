@@ -18,6 +18,11 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 	initPos = Pos;
 }
 
+Particle::Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping)
+	: type(Type), pos(Pos), vel(Vel), acc(Acc), damping(Damping)
+{
+}
+
 Particle::~Particle()
 {
 	if (rI != nullptr) rI->release();

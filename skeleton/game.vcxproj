@@ -254,6 +254,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="callbacks.cpp" />
+    <ClCompile Include="CircleParticleGenerator.cpp" />
     <ClCompile Include="firework.cpp" />
     <ClCompile Include="gaussianParticleGenerator.cpp" />
     <ClCompile Include="main.cpp" />
@@ -269,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="callbacks.hpp" />
+    <ClInclude Include="CircleParticleGenerator.h" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="firework.h" />
     <ClInclude Include="gaussianParticleGenerator.h" />

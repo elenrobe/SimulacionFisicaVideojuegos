@@ -1,11 +1,23 @@
 #pragma once
 #include "RenderUtils.hpp"
 #include <foundation/PxTransform.h>
+#include "particleGenerator.h"
+
+#include <list>
+#include <memory>
+
+enum ParticleType
+{
+	SPHERE, FIREWORK
+};
+
 class Particle
 {
 
 public:
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color = { 255, 255, 255, 1 });
+	Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping);
+
 	~Particle();
 	void integrate(double t);
 
@@ -26,9 +38,10 @@ public:
 	Vector3 getAcc() { return acc; };
 	Vector3 getVel() { return vel; };
 	bool getAlive() { return alive; };
+	ParticleType getType() { return type; }
 
 
-private:
+protected:
 	Vector3 vel;
 	physx::PxTransform pos; // A render item le pasaremos la direccion de este pos, para que se actualice automaticamente
 	RenderItem* rI;
@@ -41,7 +54,10 @@ private:
 	float maxDistance;
 	Vector3 initPos;
 
-	bool alive;
+	bool alive = true;
+	ParticleType type;
+
+	list<shared_ptr<ParticleGenerator>> _gens;
 
 };
 

@@ -1,6 +1,7 @@
 #include "particleSystem.h"
 //#include "uniformParticleGenerator.h"
 #include "gaussianParticleGenerator.h"
+//#include "firework.h"
 
 ParticleSystem::ParticleSystem()
 {
@@ -46,6 +47,35 @@ ParticleGenerator* ParticleSystem::getParticleGenerator(string name)
 	{
 		//if (g->getName() == name)
 			return g;
+	}
+}
+
+void ParticleSystem::generateFireworkSystem()
+{
+	Vector3 pos = { 0.0, 10.0, 0.0 };
+	Vector3 vel = { 0,0,0 };
+	Vector3 acc = { 0.0f, -9.8f, 0.0f };
+	double damp = 0.95;
+	Particle* p = new Particle(pos, vel, acc, { 255, 255, 255, 1 });
+
+	
+
+	GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator("Gaussian",
+		{ 10.0, 20.0, 10.0 }, { 5.0, -10.0, 5.0 }, 0.5, 5, p,
+		{ 10,10,10 }, { 10,10,10 });
+
+}
+
+void ParticleSystem::onParticleDeath(Particle* p)
+{
+	if (p->getType() == FIREWORK)
+	{
+		/*Firework* f = dynamic_cast<Firework*>(p);
+		if (f != nullptr) {
+			f->explode();
+			for (auto p : f->explode())
+				_particles.push_back(p);
+		}*/
 	}
 }
 
