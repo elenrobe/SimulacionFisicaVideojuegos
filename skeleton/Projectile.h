@@ -1,5 +1,5 @@
 #pragma once
-#include "particle.h"
+#include "Particle.h"
 class Projectile : public Particle
 {
 public:

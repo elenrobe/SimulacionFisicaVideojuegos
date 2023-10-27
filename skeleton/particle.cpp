@@ -1,4 +1,4 @@
-#include "particle.h"
+#include "Particle.h"
 
 Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 {

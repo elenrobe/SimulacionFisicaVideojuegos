@@ -1,9 +1,9 @@
-#include "gaussianParticleGenerator.h"
+#include "GaussianParticleGenerator.h"
 
-GaussianParticleGenerator::GaussianParticleGenerator(string name, Vector3 pos, Vector3 vel, double genProb, int numParticles, Particle* model, Vector3 std_dev_pos, Vector3 std_dev_vel)
+GaussianParticleGenerator::GaussianParticleGenerator(Vector3 pos, Vector3 vel, double genProb, int numParticles, Particle* model, Vector3 std_dev_pos, Vector3 std_dev_vel) : ParticleGenerator()
 {
 
-    _name = name;
+    _name = "Gaussian";
     _mean_pos = pos;
     _mean_vel = vel;
     _generation_probability = genProb;

@@ -1,4 +1,4 @@
-#include "firework.h"
+#include "Firework.h"
 
 Firework* Firework::clone() const
 {

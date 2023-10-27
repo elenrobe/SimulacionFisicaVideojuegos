@@ -1,9 +1,7 @@
-#pragma once
-#include "RenderUtils.hpp"
-#include <foundation/PxTransform.h>
 
-#include <list>
-#include <memory>
+#pragma once
+
+#include "RenderUtils.hpp"
 
 enum ParticleType
 {
@@ -19,7 +17,7 @@ public:
 	~Particle();
 	void integrate(double t);
 
-	Particle* clone() const;
+	virtual Particle* clone() const;
 
 	void setColor(Vector4 newColor) {rI->color = newColor;};
 	void setVel(Vector3 newVel) { vel = newVel; };
@@ -44,9 +42,9 @@ protected:
 	physx::PxTransform pos; // A render item le pasaremos la direccion de este pos, para que se actualice automaticamente
 	RenderItem* rI;
 	Vector3 acc;
-	float damping;
+	float damping = 0.998f;
 	Vector4 color;
-	float mass;
+	float mass = 1.0f;
 	float gravity;
 	float tiempoVida;
 	float maxDistance;

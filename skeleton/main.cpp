@@ -8,9 +8,7 @@
 #include "RenderUtils.hpp"
 #include "callbacks.hpp"
 
-#include <iostream>
-#include "particle.h"
-#include "proyectil.h"
+#include "Projectile.h"
 #include"particleSystem.h"
 
 #include "sceneManager.h"

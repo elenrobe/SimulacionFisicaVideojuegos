@@ -16,8 +16,6 @@ public:
 		: Particle(ParticleType::FIREWORK, pos, vel, acc, damping), _gens(generations){}
 	~Firework() {};
 
-	//int integrate(double t);
-
 
 	Firework* clone() const;
 

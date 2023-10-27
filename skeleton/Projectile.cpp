@@ -1,4 +1,4 @@
-#include "proyectil.h"
+#include "Projectile.h"
 
 Projectile::Projectile(TYPE currentShotType) : Particle(GetCamera()->getEye(), GetCamera()->getDir(), GetCamera()->getDir())
 {

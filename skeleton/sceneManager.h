@@ -1,19 +1,9 @@
 #pragma once
-#include <ctype.h>
-
-#include <PxPhysicsAPI.h>
 
 #include <vector>
 
-#include "core.hpp"
-#include "RenderUtils.hpp"
-#include "callbacks.hpp"
-
-#include <iostream>
-#include "particle.h"
-#include "proyectil.h"
-#include "particleSystem.h"
-
+#include "Projectile.h"
+#include "ParticleSystem.h"
 class SceneManager
 {
 private:

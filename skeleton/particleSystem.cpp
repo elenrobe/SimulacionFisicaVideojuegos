@@ -1,13 +1,13 @@
-#include "particleSystem.h"
-//#include "uniformParticleGenerator.h"
-#include "gaussianParticleGenerator.h"
-//#include "firework.h"
+#include "ParticleSystem.h"
 
-ParticleSystem::ParticleSystem()
+#include "GaussianParticleGenerator.h"
+
+ParticleSystem::ParticleSystem() 
 {
 	createFogSystem();
 	createMangueraSystem();
 }
+
 
 ParticleSystem::~ParticleSystem()
 {
@@ -21,10 +21,9 @@ ParticleSystem::~ParticleSystem()
 
 void ParticleSystem::update(double t)
 {
-	for (ParticleGenerator* g : _particle_generators)
+	for (auto g : _particle_generators)
 	{
-		vector<Particle*> aux = g->generateParticles();
-		for (Particle* p : aux)
+		for (Particle* p : g->generateParticles())
 		{
 			_particles.push_back(p);
 		}
@@ -40,15 +39,15 @@ void ParticleSystem::update(double t)
 		}
 	}
 }
-
-ParticleGenerator* ParticleSystem::getParticleGenerator(string name)
-{
-	for (auto g : _particle_generators)
-	{
-		//if (g->getName() == name)
-			return g;
-	}
-}
+//
+//ParticleGenerator* ParticleSystem::getParticleGenerator(string name)
+//{
+//	for (auto g : _particle_generators)
+//	{
+//		if (g->getName() == name)
+//			return g;
+//	}
+//}
 
 void ParticleSystem::generateFireworkSystem()
 {
@@ -60,24 +59,24 @@ void ParticleSystem::generateFireworkSystem()
 
 	
 
-	GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator("Gaussian",
+	GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator(
 		{ 10.0, 20.0, 10.0 }, { 5.0, -10.0, 5.0 }, 0.5, 5, p,
 		{ 10,10,10 }, { 10,10,10 });
 
 }
-
-void ParticleSystem::onParticleDeath(Particle* p)
-{
-	if (p->getType() == FIREWORK)
-	{
-		/*Firework* f = dynamic_cast<Firework*>(p);
-		if (f != nullptr) {
-			f->explode();
-			for (auto p : f->explode())
-				_particles.push_back(p);
-		}*/
-	}
-}
+//
+//void ParticleSystem::onParticleDeath(Particle* p)
+//{
+//	if (p->getType() == FIREWORK)
+//	{/*
+//		Firework* f = dynamic_cast<Firework*>(p);
+//		if (f != nullptr) {
+//			f->explode();
+//			for (auto p : f->explode())
+//				_particles.push_back(p);
+//		}*/
+//	}
+//}
 
 void ParticleSystem::createFogSystem()
 {
@@ -91,9 +90,9 @@ void ParticleSystem::createFogSystem()
 	p->setAcc(Vector3(1, 0.0f, 0));
 	p->setDamping(0.99f);
 
-	/*UniformParticleGenerator *uniformGenerator = new UniformParticleGenerator("Uniforme", { 5, 0, 5 }, { 0, 0, 0 }, 1, 5, p, { 10,10,10 }, { 10,10,10 });
+	//UniformParticleGenerator* uniformGenerator = new UniformParticleGenerator({ 5, 0, 5 }, { 0, 0, 0 }, 1, 5, p, { 10,10,10 }, { 10,10,10 });
 
-	_particle_generators.push_back(uniformGenerator);*/
+	//_particle_generators.push_back(uniformGenerator);
 }
 
 void ParticleSystem::createMangueraSystem()
@@ -107,7 +106,7 @@ void ParticleSystem::createMangueraSystem()
 	p->setAcc(Vector3(1, 0.0f, 0));
 	p->setDamping(0.99f);
 
-	GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator("Gaussian", { 5, 0, 5 }, { 0, 0, 0 }, 0.4, 5, p, { 10,10,10 }, { 10,10,10 });
+	GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator( { 5, 0, 5 }, { 0, 0, 0 }, 0.4, 5, p, { 60,10,60 }, { 10,10,10 });
 
 	_particle_generators.push_back(gaussianGenerator);
 }

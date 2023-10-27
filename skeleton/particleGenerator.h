@@ -1,13 +1,16 @@
-#include "particle.h"
-#include <iostream>
+#include "Particle.h"
 
 using namespace std;
 
 class ParticleGenerator
 {
 public:
+
+	ParticleGenerator();
+	virtual ~ParticleGenerator() ;
+
 	void setParticle(Particle* model);
-	virtual vector<Particle*> generateParticles() = 0;
+	virtual std::vector<Particle*> generateParticles();
 
 	string getName() { return _name; };
 protected:
@@ -15,5 +18,5 @@ protected:
 	Vector3 _mean_pos, _mean_vel;
 	double _generation_probability;
 	int _num_particles = 5;
-	Particle* _model = nullptr;
+	Particle* _model;
 };
