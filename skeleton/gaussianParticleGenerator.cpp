@@ -1,8 +1,19 @@
 #include "gaussianParticleGenerator.h"
 
-GaussianParticleGenerator::GaussianParticleGenerator(string name, Vector3 pos, Vector3 vel, double genProb, int numParticles, Particle* model) 
+GaussianParticleGenerator::GaussianParticleGenerator(string name, Vector3 pos, Vector3 vel, double genProb, int numParticles, Particle* model, Vector3 std_dev_pos, Vector3 std_dev_vel)
 {
 
+    _name = name;
+    _mean_pos = pos;
+    _mean_vel = vel;
+    _generation_probability = genProb;
+    _num_particles = numParticles; 
+    this->std_dev_pos = std_dev_pos;
+    this->std_dev_vel = std_dev_vel;
+    std_dev_t = 2;
+    _model = model;
+    std:random_device rd;
+    random_generator = std::mt19937(rd());
 }
 
 vector<Particle*> GaussianParticleGenerator::generateParticles()

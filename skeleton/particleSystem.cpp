@@ -3,14 +3,6 @@
 
 ParticleSystem::ParticleSystem()
 {
-	// Particula uniforme
-	/*_particle_generators.push_back(new UniformParticleGenerator("uniform", { 10.0, 20.0, 10.0 }, { 5.0, -10.0, 5.0 }, 0.5,
-		new Particle({ 5.0, 5.0, 5.0 }, { 10.0, 10.0, 0.0 }), { 10.0, 10.0, 0.0 }, { 5.0, 5.0, 5.0 }));*/
-
-	// Particula gaussiana
-	/*_particle_generators.push_back(new GaussianParticleGenerator("gaussian", { 10.0, 20.0, 10.0 }, { 5.0, -10.0, 5.0 }, 0.5,
-		new Particle({ 5.0, 5.0, 5.0 }, { 10.0, 10.0, 0.0 }), { 10.0, 10.0, 10.0 }, { 5.0, 5.0, 5.0 }, 5.0));*/
-
 	createFogSystem();
 }
 
@@ -58,25 +50,32 @@ ParticleGenerator* ParticleSystem::getParticleGenerator(string name)
 void ParticleSystem::createFogSystem()
 {
 
-	//Particle* up = new Particle({ 0,0,0 }, { 0,0,0 }, { 0,-10,0 }, 1, 1, { 0,0,1 }, 1000, false);
-	//UniformParticleGenerator* uG = new UniformParticleGenerator({ -20,0,0 }, { 0,0,0 }, { 10,10,10 }, { 10,10,10 }, 1, 10);
-	//uG->setParticle(up);
-	//_particle_generators.push_back(uG);
-
 	Vector3 pos = { 0.0, 10.0, 0.0 };
-	Vector3 vel = { 1,1,1 };
+	Vector3 vel = { 0,0,0 };
 	Vector3 acc = { 0.0f, -9.8f, 0.0f };
-	double time = 5.0;
-	double mass = 0.5;
 	double damp = 0.95;
-	Particle* p = new Particle(pos, vel, acc);
-	p->setMass(2.0f);
-	p->setVel(vel * 35);
-	p->setAcc(Vector3(0, -1.0f, 0));
-	p->setDamping(0.99f);
-	p->setColor(Vector4{ 0.0f, 1.0f, 1.f, 0.5 });
+	Particle* p = new Particle(pos, vel, acc, { 255, 255, 255, 1 });
 
-	UniformParticleGenerator *uniformGenerator = new UniformParticleGenerator("Uniforme", { 5, 0, 5 }, { 10, 0, 10 }, 1, 40, p, { 10,10,10 }, { 10,10,10 });
+	p->setAcc(Vector3(1, 0.0f, 0));
+	p->setDamping(0.99f);
+
+	UniformParticleGenerator *uniformGenerator = new UniformParticleGenerator("Uniforme", { 5, 0, 5 }, { 0, 0, 0 }, 1, 5, p, { 10,10,10 }, { 10,10,10 });
 
 	_particle_generators.push_back(uniformGenerator);
+}
+
+void ParticleSystem::createMangueraSystem()
+{
+	Vector3 pos = { 0.0, 10.0, 0.0 };
+	Vector3 vel = { 0,0,0 };
+	Vector3 acc = { 0.0f, -9.8f, 0.0f };
+	double damp = 0.95;
+	Particle* p = new Particle(pos, vel, acc, { 255, 255, 255, 1 });
+
+	p->setAcc(Vector3(1, 0.0f, 0));
+	p->setDamping(0.99f);
+
+	//GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator("Gaussian", { 5, 0, 5 }, { 0, 0, 0 }, 1, 5, p, { 10,10,10 }, { 10,10,10 });
+
+	//_particle_generators.push_back(gaussianGenerator);
 }

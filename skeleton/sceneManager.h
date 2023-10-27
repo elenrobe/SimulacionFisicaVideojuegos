@@ -12,6 +12,7 @@
 #include <iostream>
 #include "particle.h"
 #include "proyectil.h"
+#include "particleSystem.h"
 
 class SceneManager
 {
@@ -23,8 +24,13 @@ private:
 
 	Camera* cam;
 	void createAxis();
+
 	std::vector<Particle*> proyectiles;
 	
+	ParticleSystem* pSym;
+	void createParticleSystem();
+
+
 public:
 	SceneManager();
 	~SceneManager();

@@ -22,6 +22,11 @@ void SceneManager::toDelete()
 	}
 }
 
+void SceneManager::createParticleSystem()
+{
+	pSym = new ParticleSystem();
+}
+
 SceneManager::SceneManager()
 {
 	cam = GetCamera();
@@ -45,6 +50,7 @@ SceneManager::~SceneManager()
 void SceneManager::initScene()
 {
 	createAxis();
+	createParticleSystem();
 	//proyectiles.push_back(new Projectile(Projectile::BASE));
 
 }
@@ -60,6 +66,7 @@ void SceneManager::integrate(double t)
 
 		}
 	}
+	pSym->update(t);
 
 }
 

@@ -3,6 +3,7 @@
 #include"particle.h"
 
 using namespace std;
+
 class ParticleGenerator;
 
 class ParticleSystem
@@ -15,6 +16,7 @@ public:
 	void generateFireworkSystem();
 	void onParticleDeath();
 	void createFogSystem();
+	void createMangueraSystem();
 
 protected:
 	vector<Particle*>_particles;

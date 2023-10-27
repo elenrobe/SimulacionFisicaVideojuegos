@@ -38,7 +38,6 @@ ContactReportCallback gContactReportCallback;
 
 //std::unique_ptr<Projectile> particle;
 std::unique_ptr<SceneManager> sceneMng;
-ParticleSystem* pSym;
 
 // Initialize physics engine
 void initPhysics(bool interactive)
@@ -68,7 +67,6 @@ void initPhysics(bool interactive)
 	//particle = std::make_unique<Projectile>(Projectile::BASE);
 
 	sceneMng = std::make_unique<SceneManager>();
-	pSym = new ParticleSystem();
 	sceneMng->initScene();
 	}
 
@@ -82,7 +80,6 @@ void stepPhysics(bool interactive, double t)
 	sceneMng->toDelete();
 
 	sceneMng->integrate(t);
-	pSym->update(t);
 	PX_UNUSED(interactive);
 
 	gScene->simulate(t);
