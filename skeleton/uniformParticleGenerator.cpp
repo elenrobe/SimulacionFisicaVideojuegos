@@ -1,5 +1,6 @@
 #include "uniformParticleGenerator.h"
 
+
 UniformParticleGenerator::UniformParticleGenerator(string name, Vector3 pos,  Vector3 vel, double genProb, int numParticles, Particle* model, Vector3 posWidth, Vector3 velWidth )
 {
     _name = "Uniforme";
