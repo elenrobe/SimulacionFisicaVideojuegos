@@ -1,6 +1,5 @@
 #pragma once
 #include "ParticleGenerator.h"
-#include <time.h>
 #include <random>
 
 class GaussianParticleGenerator : public ParticleGenerator

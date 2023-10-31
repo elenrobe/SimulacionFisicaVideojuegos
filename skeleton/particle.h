@@ -13,6 +13,8 @@ class Particle
 public:
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color = { 255, 255, 255, 1 });
 	Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping);
+	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, Vector4 color, double scale, ParticleType type = ParticleType::SPHERE);
+	Particle() {};
 
 	~Particle();
 	void integrate(double t);
@@ -45,6 +47,7 @@ protected:
 	float damping = 0.998f;
 	Vector4 color;
 	float mass = 1.0f;
+	double scale;
 	float gravity;
 	float tiempoVida;
 	float maxDistance;

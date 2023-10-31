@@ -1,17 +1,17 @@
 #pragma once
 #include <iostream>
 #include <vector>
-
-class Particle;
-class ParticleGenerator;
-
+#include <string>
+#include "ParticleGenerator.h"
+#include "UniformParticleGenerator.h"
+#include "GaussianParticleGenerator.h"
 class ParticleSystem
 {
 public:
 	ParticleSystem();
 	~ParticleSystem();
 	void update(double t);
-	//ParticleGenerator* getParticleGenerator(string name);
+	ParticleGenerator* getParticleGenerator(string name);
 	void generateFireworkSystem();
 	//void onParticleDeath(Particle* p);
 	void createFogSystem();

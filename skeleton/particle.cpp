@@ -23,6 +23,20 @@ Particle::Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, flo
 {
 }
 
+Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, Vector4 color, double scale, ParticleType type)
+{
+	vel = Vel;
+	acc = Acc;
+	this->damping = damping;
+	tiempoVida = lifeTime;
+	this->color = color;
+	this->scale = scale;
+	pos = physx::PxTransform(Pos.x, Pos.y, Pos.z);
+	rI = new RenderItem(CreateShape(physx::PxSphereGeometry(scale)), &pos, color);
+	alive = true;
+	this->type = type;
+}
+
 Particle::~Particle()
 {
 	if (rI != nullptr) rI->release();

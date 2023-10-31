@@ -39,15 +39,15 @@ void ParticleSystem::update(double t)
 		}
 	}
 }
-//
-//ParticleGenerator* ParticleSystem::getParticleGenerator(string name)
-//{
-//	for (auto g : _particle_generators)
-//	{
-//		if (g->getName() == name)
-//			return g;
-//	}
-//}
+
+ParticleGenerator* ParticleSystem::getParticleGenerator(string name)
+{
+	for (auto g : _particle_generators)
+	{
+		if (g->getName() == name)
+			return g;
+	}
+}
 
 void ParticleSystem::generateFireworkSystem()
 {
@@ -90,9 +90,9 @@ void ParticleSystem::createFogSystem()
 	p->setAcc(Vector3(1, 0.0f, 0));
 	p->setDamping(0.99f);
 
-	//UniformParticleGenerator* uniformGenerator = new UniformParticleGenerator({ 5, 0, 5 }, { 0, 0, 0 }, 1, 5, p, { 10,10,10 }, { 10,10,10 });
+	UniformParticleGenerator* uniformGenerator = new UniformParticleGenerator({ 5, 0, 5 }, { 0, 0, 0 }, 1, p, { 10,10,10 }, { 10,10,10 });
 
-	//_particle_generators.push_back(uniformGenerator);
+	_particle_generators.push_back(uniformGenerator);
 }
 
 void ParticleSystem::createMangueraSystem()
