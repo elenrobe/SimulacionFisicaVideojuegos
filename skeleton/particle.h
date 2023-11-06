@@ -20,6 +20,7 @@ public:
 	void integrate(double t);
 
 	virtual Particle* clone() const;
+	virtual std::vector<Particle*> explode();
 
 	void setColor(Vector4 newColor) {rI->color = newColor;};
 	void setVel(Vector3 newVel) { vel = newVel; };
@@ -39,6 +40,7 @@ public:
 	ParticleType getType() { return type; }
 
 
+
 protected:
 	Vector3 vel;
 	physx::PxTransform pos; // A render item le pasaremos la direccion de este pos, para que se actualice automaticamente
@@ -52,6 +54,7 @@ protected:
 	float tiempoVida;
 	float maxDistance;
 	Vector3 initPos;
+	double initTime;
 
 	bool alive = true;
 	ParticleType type;

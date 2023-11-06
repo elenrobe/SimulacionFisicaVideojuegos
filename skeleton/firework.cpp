@@ -2,20 +2,25 @@
 
 Firework* Firework::clone() const
 {
-	Firework* f;
+	Firework* f = new Firework(pos.p, vel, acc, damping,tiempoVida, color, scale);
 	return f;
 }
 
-list<Particle*> Firework::explode()
+vector<Particle*> Firework::explode()
 {
-	list<Particle*> generations;
+	vector<Particle*> generations;
+	Particle* p = clone();
 
-	for (auto g : _gens)
+	CircleParticleGenerator* g = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p, 6);
+
+	for (Particle* r : g->generateParticles())
 	{
-		auto particles = g->generateParticles();
-		for (auto q : particles)
-			generations.push_back(q);
-	}
-
+		generations.push_back(r);
+	}	
 	return generations;
+}
+
+ParticleGenerator* Firework::addGenerator(ParticleGenerator* p)
+{
+	return gen;
 }

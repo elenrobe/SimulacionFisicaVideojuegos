@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include <iostream>
 
 Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 {
@@ -13,9 +14,10 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 	color = Color;
 	rI = new RenderItem(shape, &pos, color);
 	alive = true;
-	tiempoVida = 1000;
+	tiempoVida = 20;
 	maxDistance = 100;
 	initPos = Pos;
+	type = SPHERE;
 }
 
 Particle::Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping)
@@ -51,23 +53,35 @@ void Particle::integrate(double t)
 	vel = vel * pow(damping, t) + acc * t;
 
 
+	
 	if (tiempoVida > 0) {
 		tiempoVida--;
+		//std::cout << tiempoVida << std::endl;
+
+		//std::cout << alive;
 	}
-	else alive = false;
+	else {
+		alive = false; 
+		//std::cout<< alive << std::endl;
+	}
 
 	//Vector3 currentPosChange = { initPos.x + pos.p.x, initPos.y + pos.p.y, initPos.z + pos.p.z };
 	//Vector3 maxChange = { maxDistance, maxDistance, initPos.z + pos.p.z };
 
-	if (pos.p.z > maxDistance || pos.p.z < -maxDistance ||
-		pos.p.x > maxDistance || pos.p.x < -maxDistance
-		|| pos.p.y < 0) alive = false;
+	//if (pos.p.z > maxDistance || pos.p.z < -maxDistance ||
+	//	pos.p.x > maxDistance || pos.p.x < -maxDistance
+	//	|| pos.p.y < 0) alive = false;
 
 
 }
 
 Particle* Particle::clone() const
 {
-	Particle* p = new Particle(pos.p, vel, acc, color);
+	Particle* p = new Particle(pos.p, vel, acc, damping, tiempoVida, color, scale, type );
 	return p;
+}
+
+std::vector<Particle*> Particle::explode()
+{
+	return std::vector<Particle*>();
 }

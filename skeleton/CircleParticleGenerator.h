@@ -1,11 +1,18 @@
-//#pragma once
-//#include "GaussianParticleGenerator.h"
-//#include <iostream>
-//class CircleParticleGenerator : public GaussianParticleGenerator
-//{
-//	double cvel;
-//public:
-//	CircleParticleGenerator(Vector3 pos, Vector3 vel, Vector3 std_dev_pos, Vector3 std_dev_vel, double genPro, int numP, double vel_circle);
-//	virtual vector<Particle*> generateParticles();
-//};
+#pragma once
+#include "ParticleGenerator.h"
+#include <iostream>
+#include <random>
+class CircleParticleGenerator : public ParticleGenerator
+{
+	std::uniform_real_distribution<double> gen_prob_dist;
+	std::default_random_engine gen_;
+	double radius_;
+	double cvel;
+
+public:
+	CircleParticleGenerator(Vector3 meanVel, double gen_prob, double radius, Particle* model, double numPart = 10);
+	CircleParticleGenerator() {};
+
+	virtual vector<Particle*> generateParticles();
+};
 
