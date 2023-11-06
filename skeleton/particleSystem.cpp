@@ -48,7 +48,7 @@ void ParticleSystem::update(double t)
 				if (_particles[i] != nullptr) {
 					cout << "EXPLOTA";
 					vector<Particle*> v = _particles[i]->explode();
-					
+					_particles[i]->kill();
 					for (int i = 0; i < v.size();i++)
 						_particles.push_back(v[i]);
 

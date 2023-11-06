@@ -10,6 +10,7 @@ vector<Particle*> Firework::explode()
 {
 	vector<Particle*> generations;
 	Particle* p = new Particle(pos.p, vel, acc, damping, 100, color, scale);
+	Firework* f = new Firework(pos.p, vel, acc, damping, 300, color, scale);
 
 	CircleParticleGenerator* g = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p, 6);
 
@@ -17,6 +18,7 @@ vector<Particle*> Firework::explode()
 	{
 		generations.push_back(r);
 	}	
+
 	return generations;
 }
 
