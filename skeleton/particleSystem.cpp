@@ -4,11 +4,12 @@
 ParticleSystem::ParticleSystem() 
 {
 	setUpFireworks();
+	shootFirework(0);
+
 	//createFogSystem();
 	//createFireSystem();
 	//createMangueraSystem();
 	//generateFireworkSystem();
-	shootFirework(0);
 }
 
 
@@ -48,8 +49,8 @@ void ParticleSystem::update(double t)
 					cout << "EXPLOTA";
 					vector<Particle*> v = _particles[i]->explode();
 					
-					/*for (int i = 0; i < v.size();i++)
-						_particles.push_back(v[i]);*/
+					for (int i = 0; i < v.size();i++)
+						_particles.push_back(v[i]);
 
 				}
 			}
