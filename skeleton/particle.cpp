@@ -41,8 +41,8 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double
 
 Particle::~Particle()
 {
-	if (rI != nullptr) rI->release();
-	//delete  rI;
+	//if (rI != nullptr) rI->release();
+	DeregisterRenderItem(rI);
 }
 
 void Particle::integrate(double t)
@@ -65,12 +65,6 @@ void Particle::integrate(double t)
 		//std::cout<< alive << std::endl;
 	}
 
-	//Vector3 currentPosChange = { initPos.x + pos.p.x, initPos.y + pos.p.y, initPos.z + pos.p.z };
-	//Vector3 maxChange = { maxDistance, maxDistance, initPos.z + pos.p.z };
-
-	//if (pos.p.z > maxDistance || pos.p.z < -maxDistance ||
-	//	pos.p.x > maxDistance || pos.p.x < -maxDistance
-	//	|| pos.p.y < 0) alive = false;
 
 
 }

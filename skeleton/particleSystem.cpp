@@ -48,7 +48,7 @@ void ParticleSystem::update(double t)
 				if (_particles[i] != nullptr) {
 					cout << "EXPLOTA";
 					vector<Particle*> v = _particles[i]->explode();
-					_particles[i]->kill();
+					//_particles[i]->kill();
 					for (int i = 0; i < v.size();i++)
 						_particles.push_back(v[i]);
 
@@ -94,9 +94,22 @@ void ParticleSystem::generateFireworkSystem()
 
 void ParticleSystem::shootFirework(int type)
 {
-	
 
-	Firework* f = _fireworks_pool[0]->clone();
+	Vector3 pos = { 0.0, 10.0, 0.0 };
+	Vector3 vel = { 0,30,0 };
+	Vector3 acc = { 0.0f, -9.8f, 0.0f };
+	double damp = 0.95;
+	float lifeTime =100;
+	Vector4 color = { 255,0,0,1 };
+	float scale = 1;
+
+
+	//Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale);
+
+
+	//shared_ptr<ParticleGenerator> pG1(new GaussianParticleGenerator({ 5, 0, 5 }, { 0, 0, 0 }, 0.4, 5, p, { 60,10,60 }, { 10,10,10 }));
+	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale);
+	//Firework* f = _fireworks_pool[0]->clone();
 
 	_particles.push_back(f);
 
