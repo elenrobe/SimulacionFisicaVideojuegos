@@ -29,11 +29,11 @@ vector<Particle*> CircleParticleGenerator::generateParticles()
             p = _model->clone();
             angle = 360 / _num_particles * i;
 
-            Vector3 pos(cos(angle * (std::_Pi / 180)) * radius_, std::sin(angle * (std::_Pi / 180)) * radius_, 0);
-            Vector3 vel = Vector3(cos(angle * (std::_Pi / 180)), sin(angle * (std::_Pi / 180)), 0);
+            Vector3 posi(p->getPos().p.x + cos(angle * (std::_Pi / 180)) * radius_, std::sin(angle * (std::_Pi / 180)) * radius_ +p->getPos().p.y, p->getPos().p.z);
+            Vector3 velo = Vector3(cos(angle * (std::_Pi / 180)), sin(angle * (std::_Pi / 180)), 0);
 
-            p->setVel({ vel.x * _mean_vel.x,vel.y * _mean_vel.y,vel.z * _mean_vel.z });
-            p->setPos(pos);
+            p->setVel({ velo.x * _mean_vel.x,velo.y * _mean_vel.y,velo.z * _mean_vel.z });
+            p->setPos(posi);
 
             vP.push_back(p);
         }

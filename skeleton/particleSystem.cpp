@@ -48,14 +48,14 @@ void ParticleSystem::update(double t)
 					cout << "EXPLOTA";
 					vector<Particle*> v = _particles[i]->explode();
 					
-					for (auto p : v)
-						_particles.push_back(p);
+					/*for (int i = 0; i < v.size();i++)
+						_particles.push_back(v[i]);*/
 
 				}
 			}
 
-			//delete _particles[i];
-			//_particles.erase(_particles.begin() + i);
+			delete _particles[i];
+			_particles.erase(_particles.begin() + i);
 		}
 	}
 
