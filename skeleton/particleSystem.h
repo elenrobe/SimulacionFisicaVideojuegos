@@ -7,6 +7,11 @@
 #include "GaussianParticleGenerator.h"
 #include "CircleParticleGenerator.h"
 #include "Firework.h"
+
+
+#include "ParticleForceRegistry.h"
+#include "GravityForceGenerator.h"
+
 class ParticleSystem
 {
 public:
@@ -22,10 +27,17 @@ public:
 	void createNieblaSystem();
 	void createFireSystem();
 	Vector4 rndColor();
-
+	void addGravity();
+	void changeGravity() { gravityOn = !gravityOn; };
 
 protected:
 	std::vector<Particle*> _particles;
 	std::vector<ParticleGenerator*> _particle_generators;
 	std::vector<Firework*> _fireworks_pool; //con los datos de los fireworks
+
+	unique_ptr<ParticleForceRegistry> pFR;
+	GravityForceGenerator* gravityForceGen = nullptr;
+
+	
+	bool gravityOn = false;
 };

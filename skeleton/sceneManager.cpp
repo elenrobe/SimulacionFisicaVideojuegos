@@ -80,6 +80,11 @@ void SceneManager::shoot(char key)
 	{
 		break;
 	}
+	case 'G':
+	{
+		pSym->changeGravity();
+		break;
+	}
 	case 'V':
 	{
 		proyectiles.push_back(new Projectile(Projectile::ARTILLERY));

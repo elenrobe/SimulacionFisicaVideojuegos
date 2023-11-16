@@ -40,6 +40,7 @@ public:
 	void clearAccum() {
 		_force_accum *= 0.0;
 	}
+	Vector3 returnForce() { return _force_accum; };
 
 
 	physx::PxTransform getPos() { return pos; };
@@ -47,8 +48,9 @@ public:
 	Vector3 getAcc() { return acc; };
 	Vector3 getVel() { return vel; };
 	bool getAlive() { return alive; };
-	ParticleType getType() { return type; }
-
+	ParticleType getType() { return type; };
+	double getMass() { return mass; };
+	double getInverseMass() { return 1/mass; };
 
 
 protected:

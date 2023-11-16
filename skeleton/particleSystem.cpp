@@ -3,10 +3,13 @@
 
 ParticleSystem::ParticleSystem() 
 {
+	pFR = make_unique<ParticleForceRegistry>();
 	//setUpFireworks();
     shootFirework(0);
 
-	//createManguerSystem();
+	createManguerSystem();
+	addGravity();
+
 	//createFireSystem();
 	//createNieblaSystem();
 	//generateFireworkSystem();
@@ -26,19 +29,28 @@ void ParticleSystem::update(double t)
 {
 	for (auto g : _particle_generators)
 	{
-		for (Particle* p : g->generateParticles())
+		auto v = g->generateParticles();
+
+		//std::vector<ForceGenerator*> force = g->returnForce();
+
+		for (Particle* p : v)
 		{
 			_particles.push_back(p);
+
+			if (gravityOn) {
+
+				pFR.get()->addRegistry(gravityForceGen, p);
+			}
+
 		}
+		//gravityOn = false;
 	}
 
 	// integrate de cada particula
 	for (int i = 0; i < _particles.size(); i++) {
 
-		_particles[i]->addForce({0,-9.8,0});
 
 		_particles[i]->integrate(t);
-
 		if (!_particles[i]->getAlive()) {
 
 
@@ -56,10 +68,15 @@ void ParticleSystem::update(double t)
 				}
 			}
 
+			pFR.get()->deleteParticleRegistry(_particles[i]);
+			//pFR.get()->deleteForce();
 			delete _particles[i];
 			_particles.erase(_particles.begin() + i);
 		}
 	}
+
+	pFR.get()->updateForces(t);
+
 
 }
 
@@ -152,7 +169,7 @@ void ParticleSystem::createManguerSystem()
 	float lifeTime = 100;
 	Vector4 color = { 0,255,255,1 };
 	float scale = 1;
-	double mass = 1;
+	double mass = 1000;
 
 	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale, SPHERE, mass);
 
@@ -210,4 +227,13 @@ Vector4 ParticleSystem::rndColor()
 	color.z = distr(gen_);
 	color.w = 1.0;
 	return color;
+}
+
+void ParticleSystem::addGravity()
+{
+	gravityForceGen = new GravityForceGenerator({ 0, -9.8, 0 });
+	
+	gravityOn = true;
+
+	
 }
