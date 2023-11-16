@@ -11,13 +11,15 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="particle.cpp" />
-    <ClCompile Include="proyectil.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="particleGenerator.cpp" />
     <ClCompile Include="particleSystem.cpp" />
     <ClCompile Include="gaussianParticleGenerator.cpp" />
     <ClCompile Include="uniformParticleGenerator.cpp" />
     <ClCompile Include="firework.cpp" />
+    <ClCompile Include="CircleParticleGenerator.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ForceGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -30,13 +32,15 @@
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="particle.h" />
-    <ClInclude Include="proyectil.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="particleGenerator.h" />
     <ClInclude Include="particleSystem.h" />
     <ClInclude Include="gaussianParticleGenerator.h" />
     <ClInclude Include="uniformParticleGenerator.h" />
     <ClInclude Include="firework.h" />
+    <ClInclude Include="CircleParticleGenerator.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="ForceGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

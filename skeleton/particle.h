@@ -13,7 +13,7 @@ class Particle
 public:
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color = { 255, 255, 255, 1 });
 	Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping);
-	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, Vector4 color, double scale, ParticleType type = ParticleType::SPHERE);
+	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, Vector4 color, double scale, ParticleType type = ParticleType::SPHERE, double mass = 0);
 	Particle() {};
 
 	~Particle();
@@ -21,6 +21,8 @@ public:
 
 	virtual Particle* clone() const;
 	virtual std::vector<Particle*> explode();
+
+	
 
 	void setColor(Vector4 newColor) {rI->color = newColor;};
 	void setVel(Vector3 newVel) { vel = newVel; };
@@ -31,6 +33,14 @@ public:
 	void setMaxDistance(float newDistance) { maxDistance = newDistance; };
 
 	void kill() { alive = false; };
+
+	void addForce(Vector3 f) {
+		_force_accum += f;
+	}
+	void clearAccum() {
+		_force_accum *= 0.0;
+	}
+
 
 	physx::PxTransform getPos() { return pos; };
 	Vector4 getColor() { return color; };
@@ -46,11 +56,8 @@ protected:
 	physx::PxTransform pos; // A render item le pasaremos la direccion de este pos, para que se actualice automaticamente
 	RenderItem* rI;
 	Vector3 acc;
-	float damping = 0.998f;
 	Vector4 color;
-	float mass = 1.0f;
 	double scale;
-	float gravity;
 	float tiempoVida;
 	float maxDistance;
 	Vector3 initPos;
@@ -58,6 +65,13 @@ protected:
 
 	bool alive = true;
 	ParticleType type;
+
+	// Accumulated force
+	Vector3 force;
+	Vector3 _force_accum;
+	double damping, mass, inverse_mass, gravity;
+
+
 
 };
 

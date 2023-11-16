@@ -18,8 +18,8 @@ public:
 	void shootFirework(int type);
 	void setUpFireworks();
 	void onParticleDeath(Particle* p);
-	void createFogSystem();
-	void createMangueraSystem();
+	void createManguerSystem();
+	void createNieblaSystem();
 	void createFireSystem();
 	Vector4 rndColor();
 

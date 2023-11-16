@@ -14,10 +14,17 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 	color = Color;
 	rI = new RenderItem(shape, &pos, color);
 	alive = true;
-	tiempoVida = 20;
+	tiempoVida = 300;
 	maxDistance = 100;
 	initPos = Pos;
 	type = SPHERE;
+	this->type = type;
+	this->mass = mass;
+	inverse_mass = 1 / mass;
+
+	force = { 0,0,0 };
+	_force_accum = { 0,0,0 };
+	gravity = -9.8;
 }
 
 Particle::Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping)
@@ -25,7 +32,7 @@ Particle::Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, flo
 {
 }
 
-Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, Vector4 color, double scale, ParticleType type)
+Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, Vector4 color, double scale, ParticleType type, double mass)
 {
 	vel = Vel;
 	acc = Acc;
@@ -37,6 +44,12 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double
 	rI = new RenderItem(CreateShape(physx::PxSphereGeometry(scale)), &pos, color);
 	alive = true;
 	this->type = type;
+	this->mass = mass;
+	inverse_mass = 1 / mass;
+
+	force = { 0,0,0 };
+	_force_accum = { 0,0,0 };
+	gravity = -9.8;
 }
 
 Particle::~Particle()
@@ -48,12 +61,24 @@ Particle::~Particle()
 void Particle::integrate(double t)
 {
 	
-	pos.p += vel * t;
+	//pos.p += vel * t;
 
-	vel = vel * pow(damping, t) + acc * t;
+	//vel = vel * pow(damping, t) + acc * t;
 
 
 	
+	//mru
+	//if (1/mass <= 0.0f) return;
+
+	// Semi-implicit Euler algorithm
+// Get the accel considering the force accum
+	addForce({ 0, -9.8, 0 });
+	Vector3 resulting_accel = _force_accum * 1/mass;
+	vel += resulting_accel * t; // Ex. 1.3 --> add acceleration
+
+	vel *= pow(damping, t); // Exercise 1.3 --> add damping
+	pos.p += vel * t;
+
 	if (tiempoVida > 0) {
 		tiempoVida--;
 		//std::cout << tiempoVida << std::endl;
@@ -61,17 +86,17 @@ void Particle::integrate(double t)
 		//std::cout << alive;
 	}
 	else {
-		alive = false; 
+		alive = false;
 		//std::cout<< alive << std::endl;
 	}
-
+	clearAccum();
 
 
 }
 
 Particle* Particle::clone() const
 {
-	Particle* p = new Particle(pos.p, vel, acc, damping, tiempoVida, color, scale, type );
+	Particle* p = new Particle(pos.p, vel, acc, damping, tiempoVida, color, scale, type, mass);
 	return p;
 }
 

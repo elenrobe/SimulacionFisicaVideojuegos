@@ -41,7 +41,7 @@ vector<Particle*> GaussianParticleGenerator::generateParticles()
             vP.push_back(p);
         }
     }
-    vP.push_back(_model);
+   // vP.push_back(_model);
 
     return vP;
 }

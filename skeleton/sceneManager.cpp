@@ -66,6 +66,7 @@ void SceneManager::integrate(double t)
 
 		}
 	}
+
 	pSym->update(t);
 
 }

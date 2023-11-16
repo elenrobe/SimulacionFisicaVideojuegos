@@ -3,15 +3,14 @@
 
 ParticleSystem::ParticleSystem() 
 {
-	setUpFireworks();
-	shootFirework(0);
+	//setUpFireworks();
+    shootFirework(0);
 
-	//createFogSystem();
+	//createManguerSystem();
 	//createFireSystem();
-	//createMangueraSystem();
+	//createNieblaSystem();
 	//generateFireworkSystem();
 }
-
 
 ParticleSystem::~ParticleSystem()
 {
@@ -34,8 +33,10 @@ void ParticleSystem::update(double t)
 	}
 
 	// integrate de cada particula
-
 	for (int i = 0; i < _particles.size(); i++) {
+
+		_particles[i]->addForce({0,-9.8,0});
+
 		_particles[i]->integrate(t);
 
 		if (!_particles[i]->getAlive()) {
@@ -82,12 +83,12 @@ void ParticleSystem::generateFireworkSystem()
 	Vector4 color = { 255,0,0,1 };
 	float scale = 1;
 
-
-	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale);
+	double mass = 1;
+	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale, SPHERE, mass);
 
 
 	shared_ptr<ParticleGenerator> pG1(new GaussianParticleGenerator({ 5, 0, 5 }, { 0, 0, 0 }, 0.4, 5, p, { 60,10,60 }, { 10,10,10 }));
-	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale);
+	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass);
 	_particles.push_back(f);
 
 }
@@ -96,19 +97,15 @@ void ParticleSystem::shootFirework(int type)
 {
 
 	Vector3 pos = { 0.0, 10.0, 0.0 };
-	Vector3 vel = { 0,30,0 };
+	Vector3 vel = { 0,50,0 };
 	Vector3 acc = { 0.0f, -9.8f, 0.0f };
 	double damp = 0.95;
 	float lifeTime =100;
 	Vector4 color = { 255,0,0,1 };
 	float scale = 1;
+	double mass = 1;
 
-
-	//Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale);
-
-
-	//shared_ptr<ParticleGenerator> pG1(new GaussianParticleGenerator({ 5, 0, 5 }, { 0, 0, 0 }, 0.4, 5, p, { 60,10,60 }, { 10,10,10 }));
-	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale);
+	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass);
 	//Firework* f = _fireworks_pool[0]->clone();
 
 	_particles.push_back(f);
@@ -123,10 +120,12 @@ void ParticleSystem::setUpFireworks()
 	float lifeTime = 100;
 	Vector4 color = { 255,0,0,1 };
 	float scale = 1;
+	double mass = 1;
 
 	//hacemos tres tipos de particulas para los fireworks
-	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale);
-	_fireworks_pool.push_back(new Firework(pos, vel, acc, damp, lifeTime, color, scale));
+	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass);
+	_fireworks_pool.push_back(f);
+	_particles.push_back(f);
 
 
 }
@@ -144,17 +143,18 @@ void ParticleSystem::onParticleDeath(Particle* p)
 	}
 }
 
-void ParticleSystem::createFogSystem()
+void ParticleSystem::createManguerSystem()
 {
 	Vector3 pos = { 0.0, 10.0, 0.0 };
 	Vector3 vel = { 0,0,0 };
 	Vector3 acc = { 0.0f, -9.8f, 0.0f };
 	double damp = 0.95;
-	float lifeTime = 40;
+	float lifeTime = 100;
 	Vector4 color = { 0,255,255,1 };
 	float scale = 1;
+	double mass = 1;
 
-	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale);
+	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale, SPHERE, mass);
 
 
 	UniformParticleGenerator* uniformGenerator = new UniformParticleGenerator({ 5, 0, 5 }, { 0, 30, 0 }, 1, p, { 1,1,1 }, { 6,20,6 });
@@ -162,7 +162,7 @@ void ParticleSystem::createFogSystem()
 	_particle_generators.push_back(uniformGenerator);
 }
 
-void ParticleSystem::createMangueraSystem()
+void ParticleSystem::createNieblaSystem()
 {
 	Vector3 pos = { 0.0, 10.0, 0.0 };
 	Vector3 vel = { 0,0,0 };
@@ -171,8 +171,8 @@ void ParticleSystem::createMangueraSystem()
 	float lifeTime = 150;
 	Vector4 color = { 255,255,255,1 };
 	float scale = 2;
-
-	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale);
+	double mass = 1;
+	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale, SPHERE, mass);
 
 	GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator( { 5, 0, 5 }, { 0, 0, 0 }, 0.4, 5, p, { 60,10,60 }, { 5,5,5 });
 
@@ -188,8 +188,8 @@ void ParticleSystem::createFireSystem()
 	float lifeTime = 100;
 	Vector4 color = { 255,0,0,1 };
 	float scale = 1;
-
-	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale);
+	double mass = 1;
+	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale, SPHERE, mass);
 
 
 	CircleParticleGenerator* c = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p);

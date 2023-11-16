@@ -23,8 +23,8 @@ Projectile::Projectile(TYPE currentShotType) : Particle(GetCamera()->getEye(), G
 		break;
 	case FIREBALL:
 		setMass(1.0f); // 1.0 Kg
-		setVel(dir*10);
-		setAcc(Vector3(0.0f, 0.6f, 0.0f)); // floats
+		setVel(dir*20);
+		setAcc(Vector3(0.0f, 9.8f, 0.0f)); // floats
 		setDamping(0.9f);
 		setColor({ 255, 0, 0, 1 });
 		break;
