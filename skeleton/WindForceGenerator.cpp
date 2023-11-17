@@ -14,7 +14,7 @@ void WindForceGenerator::updateForce(Particle* particle, double t)
 	if (fabs(particle->getInverseMass()) < 1e-10)
 		return;
 
-	if (checkPosition(particle)) {
+	if (insideRadius(particle)) {
 		Vector3 v = particle->getVel() - windVel_;
 
 		float drag_coef = v.normalize();
@@ -27,7 +27,8 @@ void WindForceGenerator::updateForce(Particle* particle, double t)
 	}
 }
 
-bool WindForceGenerator::checkPosition(Particle* particle)
+//estar dentro de la zona
+bool WindForceGenerator::insideRadius(Particle* particle)
 {
 	return ((particle->getPos().p.x <= pos_.x + r_ && particle->getPos().p.x >= pos_.x - r_) &&
 		(particle->getPos().p.y <= pos_.y + r_ && particle->getPos().p.y >= pos_.y - r_) &&

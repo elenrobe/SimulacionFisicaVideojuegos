@@ -4,7 +4,7 @@
 class WhirlwindForceGenerator :public WindForceGenerator
 {
 public:
-	WhirlwindForceGenerator(const float k1, const float k2, float K, Vector3 windVelocity, Vector3 origin, double variabilidadY = 30);
+	WhirlwindForceGenerator(const float k1, const float k2, float K, Vector3 windVelocity, Vector3 origin, double variabilidadY = 50);
 	virtual void updateForce(Particle* particle, double t) override;
 	~WhirlwindForceGenerator() {};
 private:
