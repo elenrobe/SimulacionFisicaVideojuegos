@@ -11,6 +11,9 @@
 
 #include "ParticleForceRegistry.h"
 #include "GravityForceGenerator.h"
+#include "WindForceGenerator.h"
+#include "WhirlwindForceGenerator.h"
+#include "ExplosionForceGenerator.h"
 
 class ParticleSystem
 {
@@ -27,9 +30,15 @@ public:
 	void createNieblaSystem();
 	void createFireSystem();
 	Vector4 rndColor();
+
 	void addGravity();
 	void changeGravity() { gravityOn = !gravityOn; };
-
+	void addWind();
+	void changeWind() { windOn = !windOn; };
+	void addWhirlwind();
+	void changeWhirlwind() { whirlwindOn = !whirlwindOn; };
+	void addExplosion();
+	void changeExplosion() { explosionOn = !explosionOn; };
 protected:
 	std::vector<Particle*> _particles;
 	std::vector<ParticleGenerator*> _particle_generators;
@@ -37,7 +46,10 @@ protected:
 
 	unique_ptr<ParticleForceRegistry> pFR;
 	GravityForceGenerator* gravityForceGen = nullptr;
+	WindForceGenerator* windForceGen = nullptr;
+	WhirlwindForceGenerator* whirlwindForceGen = nullptr;
+	ExplosionForceGenerator* explosionForceGen = nullptr;
 
 	
-	bool gravityOn = false;
+	bool gravityOn = false, windOn = false, whirlwindOn = false, explosionOn = false;
 };

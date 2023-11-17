@@ -7,9 +7,10 @@ ParticleSystem::ParticleSystem()
 	//setUpFireworks();
     shootFirework(0);
 
-	createManguerSystem();
+	//createManguerSystem();
 	addGravity();
-
+	addWind();
+	addWhirlwind();
 	//createFireSystem();
 	//createNieblaSystem();
 	//generateFireworkSystem();
@@ -41,7 +42,11 @@ void ParticleSystem::update(double t)
 
 				pFR.get()->addRegistry(gravityForceGen, p);
 			}
-
+			if(windOn)
+				pFR.get()->addRegistry(windForceGen, p);
+			if (whirlwindOn)
+				pFR.get()->addRegistry(whirlwindForceGen, p);
+			
 		}
 		//gravityOn = false;
 	}
@@ -166,10 +171,10 @@ void ParticleSystem::createManguerSystem()
 	Vector3 vel = { 0,0,0 };
 	Vector3 acc = { 0.0f, -9.8f, 0.0f };
 	double damp = 0.95;
-	float lifeTime = 100;
+	float lifeTime = 150;
 	Vector4 color = { 0,255,255,1 };
 	float scale = 1;
-	double mass = 1000;
+	double mass = 1;
 
 	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale, SPHERE, mass);
 
@@ -233,7 +238,28 @@ void ParticleSystem::addGravity()
 {
 	gravityForceGen = new GravityForceGenerator({ 0, -9.8, 0 });
 	
-	gravityOn = true;
 
 	
+}
+
+void ParticleSystem::addWind()
+{
+	windForceGen = new WindForceGenerator(-1, 0, Vector3(10, 100, -10), { 7,50,7 }, 100);
+
+}
+
+void ParticleSystem::addWhirlwind()
+{
+	whirlwindForceGen = new WhirlwindForceGenerator(1, 0, 1.0, Vector3(0.1, 0.1, .1), { 5, 0, 5 });
+
+}
+
+void ParticleSystem::addExplosion()
+{
+
+	explosionForceGen = new ExplosionForceGenerator(2000, 1000, 400, Vector3(7, 50, 7));
+
+	for (auto p : _particles)
+		pFR.get()->addRegistry(explosionForceGen, p);
+
 }

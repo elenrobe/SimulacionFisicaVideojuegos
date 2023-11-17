@@ -80,9 +80,35 @@ void SceneManager::shoot(char key)
 	{
 		break;
 	}
+	case 'H':
+	{
+		pSym->changeWind();
+		break;
+	}
+	case 'J':
+	{
+		pSym->changeWhirlwind();
+		break;
+	}
 	case 'G':
 	{
 		pSym->changeGravity();
+		break;
+	}
+	case 'K':
+	{
+		pSym->changeExplosion();
+		pSym->addExplosion();
+		break;
+	}
+	case 'O':
+	{
+		pSym->createManguerSystem();
+		break;
+	}
+	case 'P':
+	{
+		pSym->createNieblaSystem();
 		break;
 	}
 	case 'V':

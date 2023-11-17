@@ -79,7 +79,7 @@ void Particle::integrate(double t)
 	vel *= pow(damping, t); // Exercise 1.3 --> add damping
 	pos.p += vel * t;
 
-	std::cout << _force_accum.y << std::endl;
+	//std::cout << _force_accum.y << std::endl;
 	//std::cout << mass << std::endl;
 
 	if (tiempoVida > 0) {

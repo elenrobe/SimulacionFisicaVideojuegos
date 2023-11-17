@@ -12,4 +12,5 @@ void ParticleDragGenerator::updateForce(Particle* particle, double t)
 	drag_coef = _k1 * drag_coef + _k2 * drag_coef * drag_coef;
 	dragF = -v * drag_coef;
 	particle->addForce(dragF);
+
 }
