@@ -24,7 +24,7 @@ void ExplosionForceGenerator::updateForce(Particle* particle, double t)
 			Vector3(particle->getPos().p.x - origin_.x,
 				particle->getPos().p.y - origin_.y,
 				particle->getPos().p.z - origin_.z)
-			* std::expf(-t / tiempo_);
+			* std::expf(-t / const_tiempo_desv_);
 
 		particle->addForce(force);
 	}
@@ -33,5 +33,5 @@ void ExplosionForceGenerator::updateForce(Particle* particle, double t)
 
 void ExplosionForceGenerator::passTime()
 {
-	tiempo_++;
+	const_tiempo_desv_++;
 }

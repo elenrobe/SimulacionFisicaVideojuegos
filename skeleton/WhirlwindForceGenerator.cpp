@@ -7,24 +7,28 @@ WhirlwindForceGenerator::WhirlwindForceGenerator(const float k1, const float k2,
 	origin_ = origin;
 	varY_ = variabilidadY;
 	K_ = K;
+	r_ = 100;
 };
 void WhirlwindForceGenerator::updateForce(Particle* particle, double t)
 {
 	if (fabs(particle->getInverseMass()) < 1e-10)
 		return;
 
-	auto x = -(particle->getPos().p.z - origin_.z);
-	auto y = varY_ - (particle->getPos().p.y - origin_.y);
-	auto z = (particle->getPos().p.x - origin_.x);
 
-	windVel_ = K_ * Vector3(x, y, z);
+	if (insideRadius(particle)) {
+		auto x = -(particle->getPos().p.z - origin_.z);
+		auto y = varY_ - (particle->getPos().p.y - origin_.y);
+		auto z = (particle->getPos().p.x - origin_.x);
 
-	Vector3 newVel = particle->getVel() - windVel_;
-	float drag_coef = newVel.normalize();
+		windVel_ = K_ * Vector3(x, y, z);
 
-	drag_coef = _k1 * drag_coef + _k2 * drag_coef;
-	Vector3 whirlForce = -newVel * drag_coef;
+		Vector3 newVel = particle->getVel() - windVel_;
+		float drag_coef = newVel.normalize();
 
-	particle->addForce(whirlForce);
+		drag_coef = _k1 * drag_coef + _k2 * drag_coef;
+		Vector3 whirlForce = -newVel * drag_coef;
 
+		particle->addForce(whirlForce);
+
+	}
 }

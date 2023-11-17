@@ -12,6 +12,6 @@ protected:
 
 	Vector3 origin_;
 	//intensidad, radio
-	double K_, R_, tiempo_;
+	double K_, R_, const_tiempo_desv_;
 
 };

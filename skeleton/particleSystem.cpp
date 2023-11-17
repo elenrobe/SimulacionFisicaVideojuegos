@@ -244,13 +244,14 @@ void ParticleSystem::addGravity()
 
 void ParticleSystem::addWind()
 {
+
 	windForceGen = new WindForceGenerator(-1, 0, Vector3(10, 100, -10), { 7,50,7 }, 100);
 
 }
 
 void ParticleSystem::addWhirlwind()
 {
-	whirlwindForceGen = new WhirlwindForceGenerator(1, 0, 1.0, Vector3(2, 2, 2), { 7,50,7 });
+	whirlwindForceGen = new WhirlwindForceGenerator(1, 0, 1.0, Vector3(9, 9, 9), { 7,50,7 }, 100);
 
 }
 
