@@ -111,6 +111,11 @@ void SceneManager::shoot(char key)
 		pSym->createNieblaSystem();
 		break;
 	}
+	case 'L':
+	{
+		pSym->addSomeParticles();
+		break;
+	}
 	case 'V':
 	{
 		proyectiles.push_back(new Projectile(Projectile::ARTILLERY));

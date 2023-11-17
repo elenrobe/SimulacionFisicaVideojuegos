@@ -263,3 +263,16 @@ void ParticleSystem::addExplosion()
 		pFR.get()->addRegistry(explosionForceGen, p);
 
 }
+
+void ParticleSystem::addSomeParticles()
+{
+
+	
+		
+		_particles.push_back(new Particle({ 0,50,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,0,255,1 }, 2, SPHERE, 1));
+		_particles.push_back(new Particle({ 5,0,5 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,255,0,1 }, 9, SPHERE, 50));
+		_particles.push_back(new Particle({ 5,25,15 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 255,0,0,1 }, 5, SPHERE, 25));
+		_particles.push_back(new Particle({ 25,10,5 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,255,0,1 }, 2, SPHERE, 4));
+
+
+}

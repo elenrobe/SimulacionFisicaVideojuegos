@@ -39,6 +39,9 @@ public:
 	void changeWhirlwind() { whirlwindOn = !whirlwindOn; };
 	void addExplosion();
 	void changeExplosion() { explosionOn = !explosionOn; };
+
+	void addSomeParticles();
+
 protected:
 	std::vector<Particle*> _particles;
 	std::vector<ParticleGenerator*> _particle_generators;
