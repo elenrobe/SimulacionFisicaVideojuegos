@@ -250,7 +250,7 @@ void ParticleSystem::addWind()
 
 void ParticleSystem::addWhirlwind()
 {
-	whirlwindForceGen = new WhirlwindForceGenerator(1, 0, 1.0, Vector3(0.1, 0.1, .1), { 5, 0, 5 });
+	whirlwindForceGen = new WhirlwindForceGenerator(1, 0, 1.0, Vector3(2, 2, 2), { 7,50,7 });
 
 }
 
