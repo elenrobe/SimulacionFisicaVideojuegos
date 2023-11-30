@@ -14,6 +14,10 @@
 #include "WindForceGenerator.h"
 #include "WhirlwindForceGenerator.h"
 #include "ExplosionForceGenerator.h"
+#include "AnchoredSpringForceGenerator.h"
+#include "SpringForceGenerator.h"
+#include "BuoyancyForceGenerator.h"
+
 
 class ParticleSystem
 {
@@ -42,6 +46,16 @@ public:
 
 	void addSomeParticles();
 
+	void muelleFijo();
+
+	void muelleDoble();
+
+	void gomaElastica();
+
+	void flotaTest();
+
+	void creaSlinky();
+
 protected:
 	std::vector<Particle*> _particles;
 	std::vector<ParticleGenerator*> _particle_generators;
@@ -52,7 +66,8 @@ protected:
 	WindForceGenerator* windForceGen = nullptr;
 	WhirlwindForceGenerator* whirlwindForceGen = nullptr;
 	ExplosionForceGenerator* explosionForceGen = nullptr;
-
+	BuoyancyForceGenerator* buoyancyForceGen = nullptr;
 	
+
 	bool gravityOn = false, windOn = false, whirlwindOn = false, explosionOn = false;
 };

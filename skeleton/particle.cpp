@@ -52,6 +52,21 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double
 	gravity = -9.8;
 }
 
+Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, physx::PxShape* geomShape, Vector4 color, double scale, int mass, int type)
+{
+	vel = Vel;
+	acc = Acc;
+	this->damping = damping;
+	tiempoVida = lifeTime;
+	this->color = color;
+	pos = physx::PxTransform(Pos.x, Pos.y, Pos.z);
+	rI = new RenderItem(geomShape, &pos, color);
+	alive = true;
+	this->scale = scale;
+	this->mass = mass;
+	inverse_mass = 1 / mass;
+}
+
 Particle::~Particle()
 {
 	//if (rI != nullptr) rI->release();
@@ -81,8 +96,8 @@ void Particle::integrate(double t)
 
 	//std::cout << _force_accum.y << std::endl;
 	//std::cout << mass << std::endl;
-
-	if (tiempoVida > 0) {
+	if(tiempoVida == -1){}
+	else if (tiempoVida > 0) {
 		tiempoVida--;
 		//std::cout << tiempoVida << std::endl;
 

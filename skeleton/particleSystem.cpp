@@ -5,7 +5,7 @@ ParticleSystem::ParticleSystem()
 {
 	pFR = make_unique<ParticleForceRegistry>();
 	//setUpFireworks();
-    shootFirework(0);
+    //shootFirework(0);
 
 	//createManguerSystem();
 	addGravity();
@@ -14,6 +14,9 @@ ParticleSystem::ParticleSystem()
 	//createFireSystem();
 	//createNieblaSystem();
 	//generateFireworkSystem();
+	//muelleFijo();
+	//muelleDoble();
+	creaSlinky();
 }
 
 ParticleSystem::~ParticleSystem()
@@ -268,12 +271,161 @@ void ParticleSystem::addExplosion()
 void ParticleSystem::addSomeParticles()
 {
 
-	
-		
-		_particles.push_back(new Particle({ 0,50,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,0,255,1 }, 2, SPHERE, 1));
-		_particles.push_back(new Particle({ 5,0,5 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,255,0,1 }, 9, SPHERE, 50));
-		_particles.push_back(new Particle({ 5,25,15 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 255,0,0,1 }, 5, SPHERE, 25));
-		_particles.push_back(new Particle({ 25,10,5 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,255,0,1 }, 2, SPHERE, 4));
+	_particles.push_back(new Particle({ 0,50,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,0,255,1 }, 2, SPHERE, 1));
+	_particles.push_back(new Particle({ 5,0,5 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,255,0,1 }, 9, SPHERE, 50));
+	_particles.push_back(new Particle({ 5,25,15 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 255,0,0,1 }, 5, SPHERE, 25));
+	_particles.push_back(new Particle({ 25,10,5 }, { 0,0,0 }, { 0,0,0 }, 0.998, 600, { 0,255,0,1 }, 2, SPHERE, 4));
+
+
+}
+
+void ParticleSystem::muelleFijo()
+{
+	auto cube = CreateShape(physx::PxBoxGeometry(4, 2, 4));
+	/*Particle* pFija = new Particle({7,80,7}, {0,0,0}, {0,0,0}, 1, 30000, cube, {0,1,0,1}, 1);
+	_particles.push_back(pFija);*/
+	auto aGen = new AnchoredSpringForceGenerator(50, 20, { 0,0,0 });
+
+	Particle* pMuelle = new Particle({ 0,15,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,0,1 }, 2, SPHERE, 4);
+	_particles.push_back(pMuelle);
+
+	//springGen_= new SpringForceGenerator(1,5,pFija);
+	GravityForceGenerator* gGen = new GravityForceGenerator({ 0.0, -0.002, 0.0 });
+
+	windForceGen = new WindForceGenerator(-1, 0, Vector3(-10, 0, -10), { 7,50,7 }, 20);
+
+	pFR->addRegistry(aGen, pMuelle);
+	pFR->addRegistry(gGen, pMuelle);
+	pFR->addRegistry(windForceGen, pMuelle);
+
+}
+
+void ParticleSystem::muelleDoble()
+{
+	Particle* p1 = new Particle({ 0,15,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,0,1 }, 2, SPHERE, 4);
+	_particles.push_back(p1);
+
+	Particle* p2 = new Particle({ 0,15,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,0,1 }, 2, SPHERE, 4);
+	_particles.push_back(p2);
+
+	auto f1 = new SpringForceGenerator(50, 20, p2);
+	pFR->addRegistry(f1, p1);
+
+	auto f2 = new SpringForceGenerator(50, 20, p1);
+	pFR->addRegistry(f2, p2);
+
+	GravityForceGenerator* gGen1 = new GravityForceGenerator({ 1.5, 0, 0.0 });
+	pFR->addRegistry(gGen1, p1);
+
+	GravityForceGenerator* gGen2 = new GravityForceGenerator({ -1.5, 0, 0.0 });
+	pFR->addRegistry(gGen2, p2);
+
+
+}
+
+void ParticleSystem::gomaElastica()
+{
+
+
+	//auto goma1_ = new Particle({ 7,70,7 }, { 0,0,0 }, { 0,0,0 }, 0.99f, -1, { 1,0,0,1 }, 3);
+	//_particles.push_back(goma1_);
+
+	//auto goma2_ = new Particle({ 30,70,7 }, { 0,0,0 }, { 0,0,0 }, 0.99f, -1, { 0,1,0,1 }, 3);
+	//_particles.push_back(goma2_);
+
+	//auto f1 = new ParticleBungee(3, 20, goma2_);
+	//forceReg_->addRegistry(f1, goma1_);
+
+	//auto f2 = new ParticleBungee(3, 20, goma1_);
+	//forceReg_->addRegistry(f2, goma2_);
+
+	//partDragGen_ = new ParticleDragGenerator(1, 1);
+	//forceReg_->addRegistry(partDragGen_, goma1_);
+	//forceReg_->addRegistry(partDragGen_, goma2_);
+
+}
+void ParticleSystem::flotaTest()
+{
+
+	//auto cebo = new Particle({ 7,60,7 }, { 0,0,0 }, { 0,0,0 }, 0.99, -1, { 1,0,0,1 }, 2, 3);
+	//_particles.push_back(cebo);
+
+	//gravityForceGen = new GravityForceGenerator({ 0,-9.8,0 });
+	//pFR->addRegistry(gravityForceGen, cebo);
+
+
+	//buoyancyForceGen = new BuoyancyForceGenerator(10.0, 0.25, 1000, Vector3(7, 50, 7));
+	//pFR->addRegistry(buoyancyForceGen, cebo);
+
+}
+void ParticleSystem::creaSlinky()
+{
+	float ini = 70, offset = 8;
+	GravityForceGenerator* grav = new GravityForceGenerator({ 0, -2, 0.0 });
+
+	Particle* p1 = new Particle({ 7,ini,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,0,255,1 }, 2, SPHERE, 1);
+	_particles.push_back(p1);
+
+	auto f1 = new SpringForceGenerator(2, offset, p1);
+	pFR->addRegistry(f1, p1);
+
+	pFR->addRegistry(grav, p1);
+	auto d1 = new ParticleDragGenerator(0.8, 0.8);
+	pFR->addRegistry(d1, p1);
+
+	Particle* p2 = new Particle({ 7,ini - offset,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,255,1 }, 2, SPHERE, 1);
+	_particles.push_back(p2);
+
+	auto f2 = new SpringForceGenerator(2, offset, p1);
+	pFR->addRegistry(f2, p2);
+
+	pFR->addRegistry(grav, p2);
+	auto d2 = new ParticleDragGenerator(0.8, 0.8);
+	pFR->addRegistry(d2, p2);
+
+	Particle* p3 = new Particle({ 7,ini - 2 * offset,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,0,255,1 }, 2, SPHERE, 1);
+	_particles.push_back(p3);
+
+	auto f3 = new SpringForceGenerator(2, offset, p2);
+	pFR->addRegistry(f3, p3);
+
+	pFR->addRegistry(grav, p3);
+	auto d3 = new ParticleDragGenerator(0.8, 0.8);
+	pFR->addRegistry(d3, p3);
+
+
+	Particle* p4 = new Particle({ 7,ini - 3 * offset,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,255,255,1 }, 2, SPHERE, 1);
+	_particles.push_back(p4);
+
+	auto f4 = new SpringForceGenerator(2, offset, p3);
+	pFR->addRegistry(f4, p4);
+
+	pFR->addRegistry(grav, p4);
+	auto d4 = new ParticleDragGenerator(0.8, 0.8);
+	pFR->addRegistry(d4, p4);
+
+
+	Particle* p5 = new Particle({ 7,ini - 4 * offset,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,0,0,1 }, 2, SPHERE, 1);
+	_particles.push_back(p5);
+
+	auto f5 = new SpringForceGenerator(2, offset, p4);
+	pFR->addRegistry(f5, p5);
+
+	pFR->addRegistry(grav, p5);
+	auto d5 = new ParticleDragGenerator(0.8, 0.8);
+	pFR->addRegistry(d5, p5);
+
+
+	Particle* p6 = new Particle({ 7,ini - 5 * offset,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,0,1 }, 2, SPHERE, 1);
+	_particles.push_back(p6);
+
+	auto f6 = new SpringForceGenerator(2, offset, p5);
+	pFR->addRegistry(f6, p6);
+
+	pFR->addRegistry(grav, p6);
+
+	auto d6 = new ParticleDragGenerator(0.8, 0.8);
+	pFR->addRegistry(d6, p6);
 
 
 }

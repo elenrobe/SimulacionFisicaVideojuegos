@@ -14,6 +14,8 @@ public:
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color = { 255, 255, 255, 1 });
 	Particle(ParticleType Type, Vector3 Pos, Vector3 Vel, Vector3 Acc, float Damping);
 	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, Vector4 color, double scale, ParticleType type = ParticleType::SPHERE, double mass = 0);
+	Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double lifeTime, physx::PxShape* geomShape, Vector4 color, double scale, int mass = 1, int type = 0);
+
 	Particle() {};
 
 	~Particle();
