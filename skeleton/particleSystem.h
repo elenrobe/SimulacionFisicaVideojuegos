@@ -16,6 +16,7 @@
 #include "ExplosionForceGenerator.h"
 #include "AnchoredSpringForceGenerator.h"
 #include "SpringForceGenerator.h"
+#include "ParticleBungee.h"
 #include "BuoyancyForceGenerator.h"
 
 
@@ -47,11 +48,9 @@ public:
 	void addSomeParticles();
 
 	void muelleEstatico();
-
 	void muelleDoble();
-
+	void bungee();
 	void createBuoyancyTest();
-
 	void createSlinky();
 
 protected:

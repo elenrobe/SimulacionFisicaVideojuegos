@@ -14,9 +14,9 @@ ParticleSystem::ParticleSystem()
 	//createFireSystem();
 	//createNieblaSystem();
 	//generateFireworkSystem();
-	//muelleFijo();
+	//muelleEstatico();
 	//muelleDoble();
-	//creaSlinky();
+	//createSlinky();
 	createBuoyancyTest();
 }
 
@@ -291,22 +291,22 @@ void ParticleSystem::muelleEstatico()
 	_particles.push_back(pMuelle);
 
 	//springGen_= new SpringForceGenerator(1,5,pFija);
-	GravityForceGenerator* gGen = new GravityForceGenerator({ 0.0, -0.002, 0.0 });
+	GravityForceGenerator* gGen = new GravityForceGenerator({ 0.0, -9.8, 0.0 });
 
-	windForceGen = new WindForceGenerator(-1, 0, Vector3(-10, 0, -10), { 7,50,7 }, 20);
+	//windForceGen = new WindForceGenerator(-1, 0, Vector3(-10, 0, -10), { 7,50,7 }, 20);
 
 	pFR->addRegistry(aGen, pMuelle);
 	pFR->addRegistry(gGen, pMuelle);
-	pFR->addRegistry(windForceGen, pMuelle);
+	//pFR->addRegistry(windForceGen, pMuelle);
 
 }
 
 void ParticleSystem::muelleDoble()
 {
-	Particle* p1 = new Particle({ 0,15,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,0,1 }, 2, SPHERE, 4);
+	Particle* p1 = new Particle({ 0,15,0 }, { 0,0,0 }, { 0,0,0 }, 0.4, -1, { 0,255,0,1 }, 2, SPHERE, 4);
 	_particles.push_back(p1);
 
-	Particle* p2 = new Particle({ 0,15,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,0,1 }, 2, SPHERE, 4);
+	Particle* p2 = new Particle({ 0,15,0 }, { 0,0,0 }, { 0,0,0 }, 0.4, -1, { 0,255,0,1 }, 2, SPHERE, 4);
 	_particles.push_back(p2);
 
 	auto f1 = new SpringForceGenerator(50, 20, p2);
@@ -325,18 +325,23 @@ void ParticleSystem::muelleDoble()
 }
 
 
+void ParticleSystem::bungee()
+{
+
+}
+
 void ParticleSystem::createBuoyancyTest()
 {
 
-	auto cebo = new Particle({ 7,60,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,0,255,1 }, 2, SPHERE, 7);
-	_particles.push_back(cebo);
+	auto objetoFlotante = new Particle({ 7,60,7 }, { 0,0,0 }, { 0,0,0 }, 0.9, -1, { 0,0,255,1 }, 2, SPHERE, 900);
+	_particles.push_back(objetoFlotante);
 
 	gravityForceGen = new GravityForceGenerator({ 0,-9.8,0 });
-	pFR->addRegistry(gravityForceGen, cebo);
+	pFR->addRegistry(gravityForceGen, objetoFlotante);
 
 
 	buoyancyForceGen = new BuoyancyForceGenerator(10.0, 1, 1000, Vector3(7, 50, 7));
-	pFR->addRegistry(buoyancyForceGen, cebo);
+	pFR->addRegistry(buoyancyForceGen, objetoFlotante);
 
 }
 void ParticleSystem::createSlinky()
