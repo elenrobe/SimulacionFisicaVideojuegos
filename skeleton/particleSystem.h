@@ -46,15 +46,13 @@ public:
 
 	void addSomeParticles();
 
-	void muelleFijo();
+	void muelleEstatico();
 
 	void muelleDoble();
 
-	void gomaElastica();
+	void createBuoyancyTest();
 
-	void flotaTest();
-
-	void creaSlinky();
+	void createSlinky();
 
 protected:
 	std::vector<Particle*> _particles;
