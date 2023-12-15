@@ -65,7 +65,7 @@ void initPhysics(bool interactive)
 	//particle = std::make_unique<Projectile>(Projectile::BASE);
 
 	sceneMng = std::make_unique<SceneManager>();
-	sceneMng->initScene();
+	sceneMng->initSceneRB();
 	}
 
 

@@ -30,6 +30,8 @@
     <ClCompile Include="AnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="BuoyancyForceGenerator.cpp" />
     <ClCompile Include="ParticleBungee.cpp" />
+    <ClCompile Include="RBParticle.cpp" />
+    <ClCompile Include="RBParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -61,6 +63,8 @@
     <ClInclude Include="AnchoredSpringForceGenerator.h" />
     <ClInclude Include="BuoyancyForceGenerator.h" />
     <ClInclude Include="ParticleBungee.h" />
+    <ClInclude Include="RBParticle.h" />
+    <ClInclude Include="RBParticleSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

@@ -1,5 +1,19 @@
 #include "sceneManager.h"
 
+void SceneManager::initScene()
+{
+	createAxis();
+	createParticleSystem();
+	//proyectiles.push_back(new Projectile(Projectile::BASE));
+
+}
+
+void SceneManager::initSceneRB()
+{
+	rb_pSym = new RBParticleSystem();
+
+}
+
 void SceneManager::createAxis()
 {
 
@@ -32,6 +46,13 @@ SceneManager::SceneManager()
 	cam = GetCamera();
 }
 
+SceneManager::SceneManager(physx::PxPhysics* gPhysics, physx::PxScene* gScene)
+{
+	cam = GetCamera();
+	rb_pSym = new RBParticleSystem();
+
+}
+
 SceneManager::~SceneManager()
 {
 	delete xAxis;
@@ -47,13 +68,6 @@ SceneManager::~SceneManager()
 	std::unique_ptr<Particle> centerAxis;*/
 }
 
-void SceneManager::initScene()
-{
-	createAxis();
-	createParticleSystem();
-	//proyectiles.push_back(new Projectile(Projectile::BASE));
-
-}
 
 void SceneManager::integrate(double t)
 {
@@ -148,3 +162,4 @@ void SceneManager::keyPressed(char key)
 {
 	shoot(key);
 }
+

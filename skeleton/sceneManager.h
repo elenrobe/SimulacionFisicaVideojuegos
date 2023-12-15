@@ -4,6 +4,7 @@
 
 #include "Projectile.h"
 #include "ParticleSystem.h"
+#include "RBParticleSystem.h"
 class SceneManager
 {
 private:
@@ -16,13 +17,16 @@ private:
 	void createAxis();
 
 	std::vector<Particle*> proyectiles;
-	
+
+	RBParticleSystem* rb_pSym;
 	ParticleSystem* pSym;
 	void createParticleSystem();
 
 
 public:
 	SceneManager();
+	SceneManager(physx::PxPhysics* gPhysics, physx::PxScene* gScene);
+
 	~SceneManager();
 
 	void toDelete();
@@ -33,15 +37,7 @@ public:
 	void shoot(char key);
 	void keyPressed(char key);
 
-	//proyectiles
-	//a = cte
-	//v inicial = v L-l + a*t
-	//Pos L = aporximadamente a P L-l + v L+l *t
+	void initSceneRB();
 
-	/*cam getcamera en constructor
-	vector3 vel = cam-> getdir
-
-
-		en el update del scene manager mirar si hay toDelete */
 };
 
