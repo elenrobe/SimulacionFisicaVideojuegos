@@ -2,15 +2,19 @@
 
 void SceneManager::initScene()
 {
-	createAxis();
-	createParticleSystem();
-	//proyectiles.push_back(new Projectile(Projectile::BASE));
+	if (rigidBodyOn)
+		initSceneRB();
+	else {
+		createAxis();
+		createParticleSystem();
+	}
+
 
 }
 
 void SceneManager::initSceneRB()
 {
-	rb_pSym = new RBParticleSystem();
+	rb_pSym = new RBParticleSystem(gPhysics, gScene);
 
 }
 
@@ -49,7 +53,8 @@ SceneManager::SceneManager()
 SceneManager::SceneManager(physx::PxPhysics* gPhysics, physx::PxScene* gScene)
 {
 	cam = GetCamera();
-	rb_pSym = new RBParticleSystem();
+	this->gPhysics = gPhysics;
+	this->gScene = gScene;
 
 }
 
@@ -80,9 +85,10 @@ void SceneManager::integrate(double t)
 
 		}
 	}
-
-	pSym->update(t);
-
+	if(rigidBodyOn)
+		rb_pSym->update(t);
+	else
+		pSym->update(t);
 }
 
 void SceneManager::shoot(char key)

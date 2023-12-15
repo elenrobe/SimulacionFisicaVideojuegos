@@ -20,9 +20,11 @@ private:
 
 	RBParticleSystem* rb_pSym;
 	ParticleSystem* pSym;
+	physx::PxPhysics* gPhysics;
+	physx::PxScene* gScene;
 	void createParticleSystem();
 
-
+	bool rigidBodyOn = false;
 public:
 	SceneManager();
 	SceneManager(physx::PxPhysics* gPhysics, physx::PxScene* gScene);
@@ -33,11 +35,12 @@ public:
 
 
 	void initScene();
+	void initSceneRB();
+
 	void integrate(double t);
 	void shoot(char key);
 	void keyPressed(char key);
 
-	void initSceneRB();
 
 };
 

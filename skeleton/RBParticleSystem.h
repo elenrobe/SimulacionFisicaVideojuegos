@@ -7,7 +7,7 @@ class RBParticleSystem
 	std::vector<RBParticle*> _particles;
 
 public:
-	RBParticleSystem();
+	RBParticleSystem(physx::PxPhysics* gPhysics, physx::PxScene* gScene);
 	~RBParticleSystem();
 	void update(double t);
 

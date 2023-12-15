@@ -35,7 +35,7 @@ ContactReportCallback gContactReportCallback;
 
 
 //std::unique_ptr<Projectile> particle;
-std::unique_ptr<SceneManager> sceneMng;
+SceneManager* sceneMng;
 
 // Initialize physics engine
 void initPhysics(bool interactive)
@@ -64,8 +64,8 @@ void initPhysics(bool interactive)
 
 	//particle = std::make_unique<Projectile>(Projectile::BASE);
 
-	sceneMng = std::make_unique<SceneManager>();
-	sceneMng->initSceneRB();
+	sceneMng = new SceneManager(gPhysics, gScene);
+	sceneMng->initScene();
 	}
 
 

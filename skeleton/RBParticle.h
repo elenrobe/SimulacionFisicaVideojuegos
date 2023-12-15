@@ -6,7 +6,7 @@ using namespace physx;
 class RBParticle
 {
 	public:
-		RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, double lifeTime, Vector4 color, double scale, physx::PxShape* geomShape, bool isStatic = true, int mass = 1);
+		RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, double lifeTime, Vector4 color, double scale, physx::PxPhysics* gPhysics, physx::PxScene* gScene, physx::PxShape* geomShape, bool isStatic = true, int mass = 1);
 
 
 		~RBParticle();

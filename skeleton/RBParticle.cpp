@@ -1,6 +1,6 @@
 #include "RBParticle.h"
 
-RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, double lifeTime, Vector4 color, double scale, physx::PxShape* geomShape, bool isStatic, int mass)
+RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, double lifeTime, Vector4 color, double scale, physx::PxPhysics* gPhysics, physx::PxScene* gScene, physx::PxShape* geomShape, bool isStatic, int mass)
 {
 	this->gScene = gScene;
 	this->gPhysics = gPhysics;
