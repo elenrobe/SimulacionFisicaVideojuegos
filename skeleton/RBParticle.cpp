@@ -17,8 +17,7 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 		staticR->attachShape(*geomShape);
 		gScene->addActor(*staticR); 
 		rI = new RenderItem(geomShape, staticR, color);
-		this->lVel = { 0,0,0 };
-		this->aVel = { 0,0,0 };
+		
 	}
 	else {
 		dynamicR = gPhysics->createRigidDynamic(pos);

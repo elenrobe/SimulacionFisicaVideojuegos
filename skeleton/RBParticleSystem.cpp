@@ -21,7 +21,7 @@ void RBParticleSystem::update(double t)
 {
 
 	rb_pFR.get()->updateForces(t);
-	//_particles[0]->addForce({ 0,1,0 });
+	_particles[0]->addForce({ 0,1,0 });
 	//std::cout << _particles[0]->returnForce().x << _particles[0]->returnForce().y << _particles[0]->returnForce().z;
 }
 
