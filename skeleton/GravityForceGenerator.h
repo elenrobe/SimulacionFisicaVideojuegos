@@ -9,6 +9,8 @@ public:
 		setGravity(g);
 	};
 	virtual void updateForce(Particle* p, double t);
+	void updateForceRB(physx::PxRigidDynamic* particle, double t);
+
 	inline void setGravity(Vector3 g) { gravity_ = g; }
 protected:
 	Vector3 gravity_;

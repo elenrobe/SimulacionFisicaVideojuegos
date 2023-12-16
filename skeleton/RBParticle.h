@@ -23,7 +23,7 @@ class RBParticle
 		void kill() { alive = false; };
 
 		void addForce(Vector3 f) {
-			if(isStatic)_force_accum += f;
+			if(!isStatic)_force_accum += f;
 		}
 		void clearAccum() {
 			_force_accum *= 0.0;

@@ -11,6 +11,8 @@ public:
 
 	};
 	virtual void updateForce(Particle* particle, double t);
+	virtual void updateForceRB(physx::PxRigidDynamic* particle, double t);
+
 	inline void setK(double k) { k_ = k; }
 	inline double getK() { return k_; }
 	virtual ~SpringForceGenerator() {}

@@ -31,6 +31,28 @@ void ExplosionForceGenerator::updateForce(Particle* particle, double t)
 	R_ += 343 * t; //speed del medio aire
 }
 
+void ExplosionForceGenerator::updateForceRB(physx::PxRigidDynamic* particle, double t)
+{
+	if (fabs(particle->getInvMass() < 1e-10))
+		return;
+
+	double r = pow((particle->getGlobalPose().p.x - origin_.x), 2) +
+		pow((particle->getGlobalPose().p.y - origin_.y), 2) +
+		pow((particle->getGlobalPose().p.z - origin_.z), 2);
+
+	if (r < R_) {
+
+		Vector3 force = (K_ / r) *
+			Vector3(particle->getGlobalPose().p.x - origin_.x,
+				particle->getGlobalPose().p.y - origin_.y,
+				particle->getGlobalPose().p.z - origin_.z)
+			* std::expf(-t / const_tiempo_desv_);
+
+		particle->addForce(force);
+	}
+	R_ += 343 * t; //speed del medio aire
+}
+
 void ExplosionForceGenerator::passTime()
 {
 	const_tiempo_desv_++;
