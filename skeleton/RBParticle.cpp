@@ -6,14 +6,14 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 	this->gPhysics = gPhysics;
 	pos = physx::PxTransform(Pos.x, Pos.y, Pos.z);
 	this->mass = mass;
-
+	this->isStatic = isStatic;
 	if (isStatic) {
 		staticR = gPhysics->createRigidStatic(pos);
 		physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(scale, scale, scale));
-		staticR->attachShape(*shape); //Se enlaza la caja con un solido rigido
+		staticR->attachShape(*geomShape); //Se enlaza la caja con un solido rigido
 		gScene->addActor(*staticR); //Se añade el solido rigido a la escena
 		//Pintar el suelo
-		rI = new RenderItem(shape, staticR, color);
+		rI = new RenderItem(geomShape, staticR, color);
 		this->lVel = { 0,0,0 };
 		this->aVel = { 0,0,0 };
 	}
@@ -22,10 +22,15 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 		dynamicR->setLinearVelocity(lVel);
 		dynamicR->setAngularVelocity(aVel);
 		physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(scale, scale, scale));
-		dynamicR->attachShape(*shape);
+		dynamicR->attachShape(*geomShape);
 		PxRigidBodyExt::updateMassAndInertia(*dynamicR, (mass));
 		gScene->addActor(*dynamicR);
 		//Pintar el nuevo solido rigido dinamico
-		rI = new RenderItem(shape, dynamicR, color);
+		rI = new RenderItem(geomShape, dynamicR, color);
 	}
+}
+
+void RBParticle::integrate(double t)
+{
+
 }

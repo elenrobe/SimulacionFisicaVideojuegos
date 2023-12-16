@@ -24,7 +24,7 @@ private:
 	physx::PxScene* gScene;
 	void createParticleSystem();
 
-	bool rigidBodyOn = false;
+	bool rigidBodyOn = true;
 public:
 	SceneManager();
 	SceneManager(physx::PxPhysics* gPhysics, physx::PxScene* gScene);
