@@ -1,8 +1,12 @@
-# SimulacionFisicaVideojuegos
-Repositorio de las prácticas de la asignatura de Simulación Física de Videojuegos
+# SimulacionFisicaVideojuegos Práctica 5
 
-En la carpeta skeleton estará vuestro código fuente
+En clase SceneManager se crean los sistemas de partículas.
 
-Necesitaréis además descomprimir el archivo que se indica a continuación en la raíz del repositorio:
+Todos los archivos creados para la práctica 5 tienen RB en el nombre, siendo:
+## RBParticle
 
-Carpetas bin y common https://ucomplutense-my.sharepoint.com/:u:/g/personal/davalejo_ucm_es/EZcsdyIoqTFOrF4hdfkVYk0BJZ9IycJ3QqXQFwaXVrlSKg?e=pfs6IO
+## RBParticleSystem
+
+## RBParticleForceRegistry
+
+Aparte de eso he modificado la clase ForceGenerator y todas las que heredan de ella para que puedan actualizar sus fuerzas habiendo un rigidbody, véase el método updateForceRB().
