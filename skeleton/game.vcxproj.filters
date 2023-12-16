@@ -32,6 +32,7 @@
     <ClCompile Include="ParticleBungee.cpp" />
     <ClCompile Include="RBParticle.cpp" />
     <ClCompile Include="RBParticleSystem.cpp" />
+    <ClCompile Include="RBParticleForceRegistry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="ParticleBungee.h" />
     <ClInclude Include="RBParticle.h" />
     <ClInclude Include="RBParticleSystem.h" />
+    <ClInclude Include="RBParticleForceRegistry.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

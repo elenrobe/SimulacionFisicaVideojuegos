@@ -13,7 +13,7 @@ class RBParticle
 		void integrate(double t);
 
 
-
+		physx::PxRigidDynamic* getDynamicRigid() { return dynamicR; }
 
 		void setColor(Vector4 newColor) { rI->color = newColor; };
 		void setPos(Vector3 newPos) { pos.p = newPos; };
@@ -23,10 +23,10 @@ class RBParticle
 		void kill() { alive = false; };
 
 		void addForce(Vector3 f) {
-			if(!isStatic)_force_accum += f;
+			if(!isStatic)dynamicR->addForce(f);
 		}
 		void clearAccum() {
-			_force_accum *= 0.0;
+			if (!isStatic)dynamicR->clearForce();
 		}
 		Vector3 returnForce() { return _force_accum; };
 

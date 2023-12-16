@@ -76,32 +76,18 @@ Particle::~Particle()
 void Particle::integrate(double t)
 {
 	
-	//pos.p += vel * t;
 
-	//vel = vel * pow(damping, t) + acc * t;
-
-
-	
-	//mru
-	//if (1/mass <= 0.0f) return;
-
-	// Semi-implicit Euler algorithm
-// Get the accel considering the force accum
-	//addForce({ 0, -9.8, 0 });
 	Vector3 resulting_accel = _force_accum * 1/mass;
 	vel += resulting_accel * t; // Ex. 1.3 --> add acceleration
 
 	vel *= pow(damping, t); // Exercise 1.3 --> add damping
 	pos.p += vel * t;
 
-	//std::cout << _force_accum.y << std::endl;
-	//std::cout << mass << std::endl;
+
 	if(tiempoVida == -1){}
 	else if (tiempoVida > 0) {
 		tiempoVida--;
-		//std::cout << tiempoVida << std::endl;
-
-		//std::cout << alive;
+		
 	}
 	else {
 		alive = false;
