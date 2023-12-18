@@ -21,15 +21,6 @@ class RBParticleSystem
 	BuoyancyForceGenerator* buoyancyForceGen = nullptr;
 
 
-	
-	void addGravity();
-	void changeGravity() { gravityOn = !gravityOn; };
-	void addWind();
-	void changeWind() { windOn = !windOn; };
-	void addWhirlwind();
-	void changeWhirlwind() { whirlwindOn = !whirlwindOn; };
-	void addExplosion();
-	void changeExplosion() { explosionOn = !explosionOn; };
 
 	bool gravityOn = false, windOn = false, whirlwindOn = false, explosionOn = false;
 
@@ -39,6 +30,17 @@ public:
 	void update(double t);
 
 	void generateParticles();
+
+
+	void addGravity();
+	void changeGravity() { gravityOn = !gravityOn; };
+	void addWind();
+	void changeWind() { windOn = !windOn; };
+	void addWhirlwind();
+	void changeWhirlwind() { whirlwindOn = !whirlwindOn; };
+	void addExplosion();
+	void changeExplosion() { explosionOn = !explosionOn; };
+
 
 
 };

@@ -16,6 +16,8 @@ void SceneManager::initSceneRB()
 {
 	rb_pSym = new RBParticleSystem(gPhysics, gScene);
 
+	rigidBodyOn = true;
+
 }
 
 void SceneManager::createAxis()
@@ -107,18 +109,29 @@ void SceneManager::shoot(char key)
 	}
 	case 'J':
 	{
-		pSym->changeWhirlwind();
+		if (!rigidBodyOn)
+			pSym->changeWhirlwind();
+
 		break;
 	}
 	case 'G':
 	{
-		pSym->changeGravity();
+
+		if(!rigidBodyOn)
+			pSym->changeGravity();
 		break;
 	}
 	case 'K':
 	{
-		pSym->changeExplosion();
-		pSym->addExplosion();
+
+		if (rigidBodyOn) {
+			rb_pSym->addExplosion();
+		}
+		else {
+
+			pSym->changeExplosion();
+			pSym->addExplosion();
+		}
 		break;
 	}
 	case 'O':
@@ -133,7 +146,11 @@ void SceneManager::shoot(char key)
 	}
 	case 'L':
 	{
-		pSym->addSomeParticles();
+		if(!rigidBodyOn)
+			pSym->addSomeParticles();
+		else {
+			rb_pSym->generateParticles();
+		}
 		break;
 	}
 	case 'V':

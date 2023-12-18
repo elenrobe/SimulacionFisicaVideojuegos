@@ -28,6 +28,7 @@ class RBParticle
 		void clearAccum() {
 			if (!isStatic)dynamicR->clearForce();
 		}
+
 		Vector3 returnForce() { return _force_accum; };
 
 
@@ -37,6 +38,7 @@ class RBParticle
 		bool getAlive() { return alive; };
 		double getMass() { return mass; };
 		double getInverseMass() { return 1 / mass; };
+		bool getIsStatic() { return isStatic; };
 
 
 	protected:
