@@ -1,6 +1,5 @@
 # SimulacionFisicaVideojuegos Práctica 5
 
-Lia si estás corrigiendo todavía no he terminado pero lo estoy haciendo ahora mismo
 
 En clase SceneManager se crean los sistemas de partículas.
 
@@ -21,6 +20,8 @@ Aparte de eso he modificado la clase ForceGenerator y todas las que heredan de e
 
 ### Teclas
 
-* La tecla k es la de la explosión
+* La tecla O para añadir partículas con generador uniforme
+* La tecla k es la de la explosión, si dejas pulsada la k se nota más el efecto, aunque hay un poco de lag.
 * La tecla H es de poner viento/wind
+* La tecla J es de poner whirlwind
 

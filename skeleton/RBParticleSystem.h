@@ -8,11 +8,15 @@
 #include "ExplosionForceGenerator.h"
 #include "BuoyancyForceGenerator.h"
 #include "RBParticleForceRegistry.h"
+#include "RBParticleGenerator.h"
+#include "RBUniformParticleGenerator.h"
 
 class RBParticleSystem
 {
 
 	std::vector<RBParticle*> _particles;
+	std::vector<RBParticleGenerator*> _particle_generators;
+
 	std::unique_ptr<RBParticleForceRegistry> rb_pFR;
 	GravityForceGenerator* gravityForceGen = nullptr;
 	WindForceGenerator* windForceGen = nullptr;
@@ -21,6 +25,8 @@ class RBParticleSystem
 	BuoyancyForceGenerator* buoyancyForceGen = nullptr;
 
 
+	physx::PxPhysics* gPhysics;
+	physx::PxScene* gScene;
 
 	bool windOn = false, whirlwindOn = false, explosionOn = false;
 
@@ -30,6 +36,8 @@ public:
 	void update(double t);
 
 	void generateParticles();
+
+	void createManguerSystem();
 
 
 	

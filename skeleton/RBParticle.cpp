@@ -11,6 +11,8 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 	this->lVel = lVel;
 	this->aVel = aVel;
 	shape = geomShape;
+	this->color = color;
+	tiempoVida = lifeTime;
 	if (isStatic) {
 		staticR = gPhysics->createRigidStatic(pos);
 		staticR->attachShape(*geomShape);
@@ -29,8 +31,24 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 	}
 }
 
+RBParticle::~RBParticle()
+{
+	DeregisterRenderItem(rI);
+
+}
+
 void RBParticle::integrate(double t)
 {
+
+	if (tiempoVida == -1) {}
+	else if (tiempoVida > 0) {
+		tiempoVida--;
+
+	}
+	else {
+		alive = false;
+		//std::cout<< alive << std::endl;
+	}
 
 }
 

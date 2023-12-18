@@ -115,6 +115,8 @@ void SceneManager::shoot(char key)
 	{
 		if (!rigidBodyOn)
 			pSym->changeWhirlwind();
+		else
+			rb_pSym->changeWhirlwind();
 
 		break;
 	}
@@ -140,12 +142,19 @@ void SceneManager::shoot(char key)
 	}
 	case 'O':
 	{
-		pSym->createManguerSystem();
+		if (rigidBodyOn) {
+			rb_pSym->createManguerSystem();
+		}
+		else {
+
+			pSym->createManguerSystem();
+		}	
 		break;
 	}
 	case 'P':
 	{
-		pSym->createNieblaSystem();
+		if (!rigidBodyOn)
+			pSym->createNieblaSystem();
 		break;
 	}
 	case 'L':
