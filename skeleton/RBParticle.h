@@ -21,6 +21,7 @@ class RBParticle
 		void setMass(float newMass) { mass = newMass; }
 
 		void kill() { alive = false; };
+		virtual RBParticle* clone() const;
 
 		void addForce(Vector3 f) {
 			if(!isStatic)dynamicR->addForce(f);
@@ -62,7 +63,7 @@ class RBParticle
 		physx::PxRigidStatic* staticR;
 		physx::PxRigidDynamic* dynamicR;
 
-
+		physx::PxShape* shape;
 		physx::PxPhysics* gPhysics;
 		physx::PxScene* gScene;
 

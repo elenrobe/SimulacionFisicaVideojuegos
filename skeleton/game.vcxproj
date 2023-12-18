@@ -272,7 +272,9 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="RBParticle.cpp" />
     <ClCompile Include="RBParticleForceRegistry.cpp" />
+    <ClCompile Include="RBParticleGenerator.cpp" />
     <ClCompile Include="RBParticleSystem.cpp" />
+    <ClCompile Include="RBUniformParticleGenerator.cpp" />
     <ClCompile Include="RenderUtils.cpp" />
     <ClCompile Include="Render\Camera.cpp" />
     <ClCompile Include="Render\Render.cpp" />
@@ -302,7 +304,9 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="RBParticle.h" />
     <ClInclude Include="RBParticleForceRegistry.h" />
+    <ClInclude Include="RBParticleGenerator.h" />
     <ClInclude Include="RBParticleSystem.h" />
+    <ClInclude Include="RBUniformParticleGenerator.h" />
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="Render\Camera.h" />
     <ClInclude Include="Render\Render.h" />

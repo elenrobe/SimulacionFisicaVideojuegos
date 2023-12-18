@@ -10,10 +10,9 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 	this->isStatic = isStatic;
 	this->lVel = lVel;
 	this->aVel = aVel;
-
+	shape = geomShape;
 	if (isStatic) {
 		staticR = gPhysics->createRigidStatic(pos);
-		physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(scale, scale, scale));
 		staticR->attachShape(*geomShape);
 		gScene->addActor(*staticR); 
 		rI = new RenderItem(geomShape, staticR, color);
@@ -23,7 +22,6 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 		dynamicR = gPhysics->createRigidDynamic(pos);
 		dynamicR->setLinearVelocity(lVel);
 		dynamicR->setAngularVelocity(aVel);
-		physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(scale, scale, scale));
 		dynamicR->attachShape(*geomShape);
 		PxRigidBodyExt::updateMassAndInertia(*dynamicR, mass);
 		gScene->addActor(*dynamicR);
@@ -34,4 +32,10 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 void RBParticle::integrate(double t)
 {
 
+}
+
+RBParticle* RBParticle::clone() const
+{
+	RBParticle* p = new RBParticle(pos.p, lVel,aVel, damping, tiempoVida, color, scale, gPhysics, gScene, shape, isStatic, mass);
+	return p;
 }

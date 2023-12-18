@@ -44,6 +44,13 @@ void RBParticleSystem::addWind()
 	}
 }
 
+void RBParticleSystem::addWhirlwind()
+{
+	whirlwindForceGen = new WhirlwindForceGenerator(1, 0, 1.0, Vector3(9, 9, 9), { 7,50,7 }, 100);
+
+
+}
+
 void RBParticleSystem::addExplosion()
 {
 

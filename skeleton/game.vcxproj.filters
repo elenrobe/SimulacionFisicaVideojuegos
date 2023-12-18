@@ -33,6 +33,8 @@
     <ClCompile Include="RBParticle.cpp" />
     <ClCompile Include="RBParticleSystem.cpp" />
     <ClCompile Include="RBParticleForceRegistry.cpp" />
+    <ClCompile Include="RBUniformParticleGenerator.cpp" />
+    <ClCompile Include="RBParticleGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -67,6 +69,8 @@
     <ClInclude Include="RBParticle.h" />
     <ClInclude Include="RBParticleSystem.h" />
     <ClInclude Include="RBParticleForceRegistry.h" />
+    <ClInclude Include="RBUniformParticleGenerator.h" />
+    <ClInclude Include="RBParticleGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

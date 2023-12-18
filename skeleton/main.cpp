@@ -61,8 +61,7 @@ void initPhysics(bool interactive)
 	sceneDesc.filterShader = contactReportFilterShader;
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
-
-	//particle = std::make_unique<Projectile>(Projectile::BASE);
+            	//particle = std::make_unique<Projectile>(Projectile::BASE);
 
 	sceneMng = new SceneManager(gPhysics, gScene);
 	sceneMng->initScene();

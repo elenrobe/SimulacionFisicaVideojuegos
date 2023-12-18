@@ -22,7 +22,7 @@ class RBParticleSystem
 
 
 
-	bool gravityOn = false, windOn = false, whirlwindOn = false, explosionOn = false;
+	bool windOn = false, whirlwindOn = false, explosionOn = false;
 
 public:
 	RBParticleSystem(physx::PxPhysics* gPhysics, physx::PxScene* gScene);
@@ -32,8 +32,7 @@ public:
 	void generateParticles();
 
 
-	void addGravity();
-	void changeGravity() { gravityOn = !gravityOn; };
+	
 	void addWind();
 	void changeWind() { windOn = !windOn; };
 	void addWhirlwind();
