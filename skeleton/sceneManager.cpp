@@ -104,7 +104,11 @@ void SceneManager::shoot(char key)
 	}
 	case 'H':
 	{
-		pSym->changeWind();
+		if (!rigidBodyOn)
+			pSym->changeWind();
+		else {
+			rb_pSym->addWind();
+		}
 		break;
 	}
 	case 'J':

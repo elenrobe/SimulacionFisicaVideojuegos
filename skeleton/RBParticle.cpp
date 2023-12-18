@@ -28,7 +28,6 @@ RBParticle::RBParticle(Vector3 Pos, Vector3 lVel, Vector3 aVel, double damping, 
 		PxRigidBodyExt::updateMassAndInertia(*dynamicR, mass);
 		gScene->addActor(*dynamicR);
 		rI = new RenderItem(geomShape, dynamicR, color);
-		dynamicR->addForce({ 0,0,80 });
 	}
 }
 
