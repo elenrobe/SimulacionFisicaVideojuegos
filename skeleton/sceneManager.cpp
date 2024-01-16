@@ -2,6 +2,9 @@
 
 void SceneManager::initScene()
 {
+	proyectoFinal();
+	return;
+
 	if (rigidBodyOn)
 		initSceneRB();
 	else {
@@ -14,6 +17,7 @@ void SceneManager::initScene()
 
 void SceneManager::initSceneRB()
 {
+
 	rb_pSym = new RBParticleSystem(gPhysics, gScene);
 
 	rigidBodyOn = true;
@@ -67,12 +71,6 @@ SceneManager::~SceneManager()
 	delete zAxis;
 	delete centerAxis;
 
-
-	/*
-	xAxis = nullptr;
-	std::unique_ptr<Particle> yAxis;
-	std::unique_ptr<Particle> zAxis;
-	std::unique_ptr<Particle> centerAxis;*/
 }
 
 
@@ -87,6 +85,8 @@ void SceneManager::integrate(double t)
 
 		}
 	}
+
+
 	if(rigidBodyOn)
 		rb_pSym->update(t);
 	else
@@ -187,7 +187,8 @@ void SceneManager::shoot(char key)
 		break;
 	}
 	default:
-		proyectiles.push_back(new Projectile(Projectile::BASE));
+		//rb_pSym->deleteAll();
+		//proyectiles.push_back(new Projectile(Projectile::BASE));
 		break;
 	}
 
@@ -197,5 +198,12 @@ void SceneManager::shoot(char key)
 void SceneManager::keyPressed(char key)
 {
 	shoot(key);
+}
+
+void SceneManager::proyectoFinal()
+{
+	createParticleSystem();
+
+	rb_pSym = new RBParticleSystem(gPhysics, gScene);
 }
 

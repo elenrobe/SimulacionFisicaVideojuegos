@@ -40,7 +40,7 @@ RBParticle::~RBParticle()
 void RBParticle::integrate(double t)
 {
 
-	if (tiempoVida == -1) {}
+	if (tiempoVida == -1) return;
 	else if (tiempoVida > 0) {
 		tiempoVida--;
 

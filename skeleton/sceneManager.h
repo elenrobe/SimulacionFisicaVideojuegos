@@ -24,7 +24,7 @@ private:
 	physx::PxScene* gScene;
 	void createParticleSystem();
 
-	bool rigidBodyOn = true;
+	bool rigidBodyOn = false;
 public:
 	SceneManager();
 	SceneManager(physx::PxPhysics* gPhysics, physx::PxScene* gScene);
@@ -33,7 +33,6 @@ public:
 
 	void toDelete();
 
-
 	void initScene();
 	void initSceneRB();
 
@@ -41,6 +40,7 @@ public:
 	void shoot(char key);
 	void keyPressed(char key);
 
+	void proyectoFinal();
 
 };
 

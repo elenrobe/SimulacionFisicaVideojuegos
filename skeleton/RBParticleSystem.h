@@ -10,6 +10,7 @@
 #include "RBParticleForceRegistry.h"
 #include "RBParticleGenerator.h"
 #include "RBUniformParticleGenerator.h"
+#include "Noria.h"
 
 class RBParticleSystem
 {
@@ -36,6 +37,7 @@ public:
 	void update(double t);
 
 	void generateParticles();
+	void deleteAll();
 
 	void createManguerSystem();
 

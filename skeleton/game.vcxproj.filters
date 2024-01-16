@@ -35,6 +35,10 @@
     <ClCompile Include="RBParticleForceRegistry.cpp" />
     <ClCompile Include="RBUniformParticleGenerator.cpp" />
     <ClCompile Include="RBParticleGenerator.cpp" />
+    <ClCompile Include="ProyectoFinalScene.cpp" />
+    <ClCompile Include="Tiovivo.cpp" />
+    <ClCompile Include="CircleForceGenerator.cpp" />
+    <ClCompile Include="Noria.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -71,6 +75,10 @@
     <ClInclude Include="RBParticleForceRegistry.h" />
     <ClInclude Include="RBUniformParticleGenerator.h" />
     <ClInclude Include="RBParticleGenerator.h" />
+    <ClInclude Include="ProyectoFinalScene.h" />
+    <ClInclude Include="Tiovivo.h" />
+    <ClInclude Include="CircleForceGenerator.h" />
+    <ClInclude Include="Noria.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

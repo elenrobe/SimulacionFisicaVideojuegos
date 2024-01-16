@@ -7,23 +7,15 @@ RBParticleSystem::RBParticleSystem(physx::PxPhysics* gPhysics, physx::PxScene* g
 	this->gScene = gScene;
 
 	rb_pFR = std::make_unique<RBParticleForceRegistry>();
-	//physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(4));
-	physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(4,4,4));
-
-	physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(100, 1, 100));
-	RBParticle* p = new RBParticle({ 0,50,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,0,255,1 }, 5, gPhysics, gScene, shape, false, 1);
-	_particles.push_back(p);
-
-	RBParticle* p2 = new RBParticle({ 0,50,50 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,255,1 }, 5, gPhysics, gScene, shape, false, 7000);
-	_particles.push_back(p2);
 	
-	_particles.push_back(new RBParticle({ 0,0,0 }, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,0,0,1 }, 5, gPhysics, gScene, floor, 900));
-
-	//rb_pFR.get()->addRegistry(windForceGen, p->getDynamicRigid());
+	physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(100, 1, 100));
+	_particles.push_back(new RBParticle({ 0,-100,0 }, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,0,0,1 }, 5, gPhysics, gScene, floor, 900));
 
 	//INICIALIZAR LOS FORCE GENERATORS
 	windForceGen = new WindForceGenerator(-1, 3, Vector3(200, 0, 0), { 0,10,0 }, 400);
 	addWhirlwind();
+
+	Noria* noria = new Noria(gPhysics, gScene);
 }
 
 void RBParticleSystem::update(double t)
@@ -75,6 +67,34 @@ void RBParticleSystem::update(double t)
 
 void RBParticleSystem::generateParticles()
 {
+	//physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(4));
+	physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(4, 4, 4));
+
+	physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(100, 1, 100));
+	RBParticle* p = new RBParticle({ 0,50,0 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,0,255,1 }, 5, gPhysics, gScene, shape, false, 1);
+	_particles.push_back(p);
+
+	RBParticle* p2 = new RBParticle({ 0,50,50 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,255,1 }, 5, gPhysics, gScene, shape, false, 7000);
+	_particles.push_back(p2);
+
+	_particles.push_back(new RBParticle({ 0,0,0 }, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,0,0,1 }, 5, gPhysics, gScene, floor, 900));
+
+	//rb_pFR.get()->addRegistry(windForceGen, p->getDynamicRigid());
+}
+
+void RBParticleSystem::deleteAll()
+{
+	for (int i = 0; i < _particles.size(); i++) {
+
+
+
+
+			rb_pFR.get()->deleteParticleRegistry(_particles[i]->getDynamicRigid());
+			delete _particles[i];
+			_particles.erase(_particles.begin() + i);
+		
+	}
+
 }
 
 void RBParticleSystem::createManguerSystem()

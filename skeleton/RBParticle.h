@@ -14,6 +14,7 @@ class RBParticle
 
 
 		physx::PxRigidDynamic* getDynamicRigid() { return dynamicR; }
+		physx::PxRigidStatic* getStaticRigid() { return staticR; }
 
 		void setColor(Vector4 newColor) { rI->color = newColor; };
 		void setPos(Vector3 newPos) { pos.p = newPos; };

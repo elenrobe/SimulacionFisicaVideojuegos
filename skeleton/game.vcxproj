@@ -256,6 +256,7 @@
     <ClCompile Include="AnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="BuoyancyForceGenerator.cpp" />
     <ClCompile Include="callbacks.cpp" />
+    <ClCompile Include="CircleForceGenerator.cpp" />
     <ClCompile Include="CircleParticleGenerator.cpp" />
     <ClCompile Include="ExplosionForceGenerator.cpp" />
     <ClCompile Include="Firework.cpp" />
@@ -263,6 +264,7 @@
     <ClCompile Include="GaussianParticleGenerator.cpp" />
     <ClCompile Include="GravityForceGenerator.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Noria.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleBungee.cpp" />
     <ClCompile Include="ParticleDragGenerator.cpp" />
@@ -270,6 +272,7 @@
     <ClCompile Include="ParticleGenerator.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ProyectoFinalScene.cpp" />
     <ClCompile Include="RBParticle.cpp" />
     <ClCompile Include="RBParticleForceRegistry.cpp" />
     <ClCompile Include="RBParticleGenerator.cpp" />
@@ -280,6 +283,7 @@
     <ClCompile Include="Render\Render.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SpringForceGenerator.cpp" />
+    <ClCompile Include="Tiovivo.cpp" />
     <ClCompile Include="UniformParticleGenerator.cpp" />
     <ClCompile Include="WhirlwindForceGenerator.cpp" />
     <ClCompile Include="WindForceGenerator.cpp" />
@@ -288,6 +292,7 @@
     <ClInclude Include="AnchoredSpringForceGenerator.h" />
     <ClInclude Include="BuoyancyForceGenerator.h" />
     <ClInclude Include="callbacks.hpp" />
+    <ClInclude Include="CircleForceGenerator.h" />
     <ClInclude Include="CircleParticleGenerator.h" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="ExplosionForceGenerator.h" />
@@ -295,6 +300,7 @@
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="GaussianParticleGenerator.h" />
     <ClInclude Include="GravityForceGenerator.h" />
+    <ClInclude Include="Noria.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleBungee.h" />
     <ClInclude Include="ParticleDragGenerator.h" />
@@ -302,6 +308,7 @@
     <ClInclude Include="ParticleGenerator.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="ProyectoFinalScene.h" />
     <ClInclude Include="RBParticle.h" />
     <ClInclude Include="RBParticleForceRegistry.h" />
     <ClInclude Include="RBParticleGenerator.h" />
@@ -312,6 +319,7 @@
     <ClInclude Include="Render\Render.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SpringForceGenerator.h" />
+    <ClInclude Include="Tiovivo.h" />
     <ClInclude Include="UniformParticleGenerator.h" />
     <ClInclude Include="WhirlwindForceGenerator.h" />
     <ClInclude Include="WindForceGenerator.h" />
