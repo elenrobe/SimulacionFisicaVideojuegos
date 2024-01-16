@@ -8,7 +8,7 @@ class Noria
 	RBParticle* base_;
 	std::vector<RBParticle*> cabinas;
 public:
-	Noria(physx::PxPhysics* gPhysics, physx::PxScene* gScene);
+	Noria(Vector3 pos,physx::PxPhysics* gPhysics, physx::PxScene* gScene);
 	~Noria();
 
 };

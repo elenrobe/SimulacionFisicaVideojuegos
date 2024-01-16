@@ -15,7 +15,7 @@ RBParticleSystem::RBParticleSystem(physx::PxPhysics* gPhysics, physx::PxScene* g
 	windForceGen = new WindForceGenerator(-1, 3, Vector3(200, 0, 0), { 0,10,0 }, 400);
 	addWhirlwind();
 
-	Noria* noria = new Noria(gPhysics, gScene);
+	Noria* noria = new Noria(Vector3(300,0,0),gPhysics, gScene);
 }
 
 void RBParticleSystem::update(double t)
