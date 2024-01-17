@@ -27,36 +27,36 @@ Tiovivo::Tiovivo(Vector3 pos, std::unique_ptr<ParticleForceRegistry>&  pFR)
 	GravityForceGenerator* grav = new GravityForceGenerator({ 0, -2, 0.0 });
 
 	//Particle* p1 = new Particle({ 7,ini,7 }, { 0,0,0 }, { 0,0,0 }, 1, -1, cube, { 0,1,0,1 }, 1);
+	float radio = 100;
+	for (int i = 0; i < 6; i++) {
+		float angle = i * 2.0f * physx::PxPi / 12;
+		float x = pos.x + 0;
 
+		//float y = 0;
+		//float z = cabinRadius * std::sin(angle);
+		float y = pos.y + radio / 3 * 2 * std::sin(angle);
+		float z = pos.z + radio / 3 * 2 * std::cos(angle);
 
-	Particle* p0 = new Particle({ pos.x,ini - offset*4,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,255,0,1 }, 1.1, BARRA, 20);
+		Particle* p0 = new Particle({ pos.x,ini - offset * 4,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,255,0,1 }, 1.1, BARRA, 20);
 
-	particles.push_back(p0);
+		particles.push_back(p0);
 
-	Particle* p1 = new Particle({ pos.x,ini - offset,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,255,0,1 }, 5, TIOVIVO, 20);
+		Particle* p1 = new Particle({ pos.x,ini - offset,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,255,0,1 }, 5, TIOVIVO, 20);
 
-	particles.push_back(p1);
+		particles.push_back(p1);
 
-	Particle* p2 = new Particle({ pos.x,ini - 2 * offset,pos.z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,255,255,1 }, 4, SPHERE, 30);
+		Particle* p2 = new Particle({ pos.x,ini - offset * 2,pos.z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,255,255,1 }, 4, HORSE, 20);
 
-	particles.push_back(p2);
+		particles.push_back(p2);
 
-	auto f2 = new SpringForceGenerator(60, offset, p1);
-	pFR->addRegistry(f2, p2);
+		auto f2 = new SpringForceGenerator(30, offset * 2, p1);
+		pFR->addRegistry(f2, p2);
 
-	pFR->addRegistry(grav, p2);
-	auto d2 = new ParticleDragGenerator(0.8, 0.8);
-	pFR->addRegistry(d2, p2);
+		pFR->addRegistry(grav, p2);
+		auto d2 = new ParticleDragGenerator(0.8, 0.8);
+		pFR->addRegistry(d2, p2);
+	}
 
-	Particle* p3 = new Particle({ pos.x,ini - offset *2,pos.z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,255,255,1 }, 4, HORSE, 20);
-	particles.push_back(p3);
-
-	auto f3 = new SpringForceGenerator(60, offset, p2);
-	pFR->addRegistry(f3, p3);
-
-	pFR->addRegistry(grav, p3);
-	auto d3 = new ParticleDragGenerator(0.8, 0.8);
-	pFR->addRegistry(d3, p3);
 
 
 }
