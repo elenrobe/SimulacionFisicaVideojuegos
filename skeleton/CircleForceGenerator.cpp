@@ -29,11 +29,12 @@ void CircleForceGenerator::updateForce(Particle* particle, double t)
 	auto y = particle->getPos().p.y + radius * std::sin(angle);
 	auto z = particle->getPos().p.z;
 
-	//windVel_ = K_ * Vector3(x, y, z);
-	Vector3 force = Vector3(x, y, z);
+	//particle->setPos(Vector3(x, y, z));
+	////windVel_ = K_ * Vector3(x, y, z);
+	//Vector3 force = Vector3(x, y, z);
 
-	particle->addForce(force * particle->getMass());
-
+	//particle->addForce(force * particle->getMass());
+	angle++;
 }
 
 void CircleForceGenerator::updateForceRB(physx::PxRigidDynamic* particle, double t)

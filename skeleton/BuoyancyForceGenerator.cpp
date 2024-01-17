@@ -1,7 +1,9 @@
 #include "BuoyancyForceGenerator.h"
 BuoyancyForceGenerator::BuoyancyForceGenerator(float h, float V, float d, Vector3& pos) :height(h), volume(V), liquid_density(d)
 {
-	_liquid_particle = new Particle(pos, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,0,255,1 }, 2, SPHERE, 4);
+	auto cube = CreateShape(physx::PxBoxGeometry(1, 20, 1));
+	_liquid_particle = new Particle(pos, { 0,0,0 }, { 0,0,0 }, 1, -1, cube, { 0,1,0,1 }, 1);
+
 }
 void BuoyancyForceGenerator::updateForce(Particle* p, double t) {
 

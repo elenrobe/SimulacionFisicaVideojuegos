@@ -5,7 +5,7 @@
 
 enum ParticleType
 {
-	SPHERE, FIREWORK
+	SPHERE, FIREWORK, HORSE, TIOVIVO, BARRA
 };
 class Particle
 {
@@ -35,7 +35,7 @@ public:
 	void setMaxDistance(float newDistance) { maxDistance = newDistance; };
 
 	void kill() { alive = false; };
-
+	Vector4 rndColor();
 	void addForce(Vector3 f) {
 		_force_accum += f;
 	}

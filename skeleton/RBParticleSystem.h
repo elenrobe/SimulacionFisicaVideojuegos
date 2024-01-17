@@ -36,6 +36,8 @@ public:
 	~RBParticleSystem();
 	void update(double t);
 
+	void generateFinalScene(); //proyecto final
+
 	void generateParticles();
 	void deleteAll();
 

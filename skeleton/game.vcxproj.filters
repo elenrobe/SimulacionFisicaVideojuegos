@@ -39,6 +39,7 @@
     <ClCompile Include="Tiovivo.cpp" />
     <ClCompile Include="CircleForceGenerator.cpp" />
     <ClCompile Include="Noria.cpp" />
+    <ClCompile Include="FireworkDispenser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="Tiovivo.h" />
     <ClInclude Include="CircleForceGenerator.h" />
     <ClInclude Include="Noria.h" />
+    <ClInclude Include="FireworkDispenser.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

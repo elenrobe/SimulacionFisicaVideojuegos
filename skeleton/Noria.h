@@ -6,10 +6,12 @@ class Noria
 {
 	RBParticle* centro_;
 	RBParticle* base_;
-	std::vector<RBParticle*> cabinas;
+	std::vector<RBParticle*> particles;
 public:
 	Noria(Vector3 pos,physx::PxPhysics* gPhysics, physx::PxScene* gScene);
 	~Noria();
-
+	std::vector<RBParticle*> getParticles() {
+		return particles;
+	}
 };
 

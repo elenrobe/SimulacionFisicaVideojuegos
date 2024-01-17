@@ -11,15 +11,40 @@ ParticleSystem::ParticleSystem()
 	addGravity();
 	addWind();
 	addWhirlwind();
+
+	generateFinalScene();
 	//createFireSystem();
 	//createNieblaSystem();
 	//generateFireworkSystem();
 	//muelleEstatico();
 	//muelleDoble();
 	//createSlinky();
-	createBuoyancyTest();
+	//createBuoyancyTest();
 }
 
+void ParticleSystem::generateFinalScene()
+{
+	//createBuoyancyTest();
+	//setUpFireworks();
+	shootFirework(3);
+
+	Tiovivo* tiovivo = new Tiovivo(Vector3(0, 0, 0), pFR);
+	/*for (auto it = tiovivo->getParticles().begin(); it != tiovivo->getParticles().end(); ++it) {
+
+	
+		_particles.push_back(it);
+
+
+	}*/
+	auto v = tiovivo->getParticles();
+
+	for (Particle* p : v)
+	{
+		_particles.push_back(p);
+
+
+	}
+}
 ParticleSystem::~ParticleSystem()
 {
 	for (auto it = _particles.begin(); it != _particles.end(); ++it) {
@@ -74,6 +99,8 @@ void ParticleSystem::update(double t)
 					for (int i = 0; i < v.size();i++)
 						_particles.push_back(v[i]);
 
+
+
 				}
 			}
 
@@ -114,7 +141,7 @@ void ParticleSystem::generateFireworkSystem()
 
 
 	shared_ptr<ParticleGenerator> pG1(new GaussianParticleGenerator({ 5, 0, 5 }, { 0, 0, 0 }, 0.4, 5, p, { 60,10,60 }, { 10,10,10 }));
-	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass);
+	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass, 1);
 	_particles.push_back(f);
 
 }
@@ -131,7 +158,7 @@ void ParticleSystem::shootFirework(int type)
 	float scale = 1;
 	double mass = 1;
 
-	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass);
+	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass, type);
 	//Firework* f = _fireworks_pool[0]->clone();
 
 	_particles.push_back(f);
@@ -149,7 +176,7 @@ void ParticleSystem::setUpFireworks()
 	double mass = 1;
 
 	//hacemos tres tipos de particulas para los fireworks
-	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass);
+	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass, 1);
 	_fireworks_pool.push_back(f);
 	_particles.push_back(f);
 
@@ -280,6 +307,7 @@ void ParticleSystem::addSomeParticles()
 
 }
 
+
 void ParticleSystem::muelleEstatico()
 {
 	auto cube = CreateShape(physx::PxBoxGeometry(4, 2, 4));
@@ -295,8 +323,8 @@ void ParticleSystem::muelleEstatico()
 
 	//windForceGen = new WindForceGenerator(-1, 0, Vector3(-10, 0, -10), { 7,50,7 }, 20);
 
-	pFR->addRegistry(aGen, pMuelle);
-	pFR->addRegistry(gGen, pMuelle);
+	pFR.get()->addRegistry(aGen, pMuelle);
+	pFR.get()->addRegistry(gGen, pMuelle);
 	//pFR->addRegistry(windForceGen, pMuelle);
 
 }
@@ -310,16 +338,16 @@ void ParticleSystem::muelleDoble()
 	_particles.push_back(p2);
 
 	auto f1 = new SpringForceGenerator(50, 20, p2);
-	pFR->addRegistry(f1, p1);
+	pFR.get()->addRegistry(f1, p1);
 
 	auto f2 = new SpringForceGenerator(50, 20, p1);
-	pFR->addRegistry(f2, p2);
+	pFR.get()->addRegistry(f2, p2);
 
 	GravityForceGenerator* gGen1 = new GravityForceGenerator({ 1.5, 0, 0.0 });
-	pFR->addRegistry(gGen1, p1);
+	pFR.get()->addRegistry(gGen1, p1);
 
 	GravityForceGenerator* gGen2 = new GravityForceGenerator({ -1.5, 0, 0.0 });
-	pFR->addRegistry(gGen2, p2);
+	pFR.get()->addRegistry(gGen2, p2);
 
 
 }

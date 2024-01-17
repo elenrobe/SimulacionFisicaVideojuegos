@@ -2,24 +2,46 @@
 
 Firework* Firework::clone() const
 {
-	Firework* f = new Firework(pos.p, vel, acc, damping,tiempoVida, color, scale, mass);
+	Firework* f = new Firework(pos.p, vel, acc, damping,tiempoVida, color, scale, mass, type);
 	return f;
 }
 
 vector<Particle*> Firework::explode()
 {
-	vector<Particle*> generations;
-	Particle* p = new Particle(pos.p, vel, acc, damping, 100, color, scale, SPHERE, mass);
+	if (type == 1) {
 
-	CircleParticleGenerator* g = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p, 6);
-	generations.push_back(p);
+		vector<Particle*> generations;
+		//si es de cada tipo que explote o no
+		Particle* p = new Particle(pos.p, vel, acc, damping, 100, rndColor(), scale, SPHERE, mass);
 
-	for (Particle* r : g->generateParticles())
-	{
-		generations.push_back(r);
-	}	
+		CircleParticleGenerator* g = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p, 4);
+		generations.push_back(p);
 
-	return generations;
+		for (Particle* r : g->generateParticles())
+		{
+			generations.push_back(r);
+		}
+		cout << "1";
+
+		return generations;
+	}
+	else {
+
+		vector<Particle*> generations;
+		//si es de cada tipo que explote o no
+		Firework* p = new Firework(pos.p, vel, acc, damping, 100, rndColor(), scale, mass, type-1);
+
+		CircleParticleGenerator* g = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p, 6);
+		generations.push_back(p);
+
+		for (Particle* r : g->generateParticles())
+		{
+			generations.push_back(r);
+		}
+		cout << "2";
+		return generations;
+	}
+
 }
 
 ParticleGenerator* Firework::addGenerator(ParticleGenerator* p)

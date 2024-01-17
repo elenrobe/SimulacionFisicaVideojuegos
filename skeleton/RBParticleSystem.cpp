@@ -7,15 +7,38 @@ RBParticleSystem::RBParticleSystem(physx::PxPhysics* gPhysics, physx::PxScene* g
 	this->gScene = gScene;
 
 	rb_pFR = std::make_unique<RBParticleForceRegistry>();
+	generateFinalScene();
 	
+	//INICIALIZAR LOS FORCE GENERATORS
+	/*windForceGen = new WindForceGenerator(-1, 3, Vector3(200, 0, 0), { 0,10,0 }, 400);
+	addWhirlwind();*/
+
+}
+
+void RBParticleSystem::generateFinalScene()
+{
 	physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(100, 1, 100));
 	_particles.push_back(new RBParticle({ 0,-100,0 }, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,0,0,1 }, 5, gPhysics, gScene, floor, 900));
 
-	//INICIALIZAR LOS FORCE GENERATORS
-	windForceGen = new WindForceGenerator(-1, 3, Vector3(200, 0, 0), { 0,10,0 }, 400);
-	addWhirlwind();
+	Noria* noria = new Noria(Vector3(300, 0, 0), gPhysics, gScene);
 
-	Noria* noria = new Noria(Vector3(300,0,0),gPhysics, gScene);
+
+	//buoyancy
+
+	//auto objetoFlotante = new Particle({ 7,60,7 }, { 0,0,0 }, { 0,0,0 }, 0.9, -1, { 0,0,255,1 }, 2, SPHERE, 900);
+	//_particles.push_back(objetoFlotante);
+
+
+	//buoyancyForceGen = new BuoyancyForceGenerator(10.0, 1, 1000, Vector3(7, 50, 7));
+	//pFR->addRegistry(buoyancyForceGen, objetoFlotante);
+
+	/*physx::PxShape* B = CreateShape(physx::PxBoxGeometry(2, 2, 2));
+	RBParticle* r = new RBParticle({ 7,60,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,1,0,1 }, 5, gPhysics, gScene, B, false, 900);
+	_particles.push_back(r);
+
+
+	buoyancyForceGen = new BuoyancyForceGenerator(10.0, 1, 1000, Vector3(7, 50, 7));
+	rb_pFR->addRegistry(buoyancyForceGen, r->getDynamicRigid());*/
 }
 
 void RBParticleSystem::update(double t)
@@ -64,6 +87,7 @@ void RBParticleSystem::update(double t)
 	rb_pFR.get()->updateForces(t);
 	
 }
+
 
 void RBParticleSystem::generateParticles()
 {

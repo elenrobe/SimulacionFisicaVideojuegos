@@ -18,6 +18,7 @@
 #include "SpringForceGenerator.h"
 #include "ParticleBungee.h"
 #include "BuoyancyForceGenerator.h"
+#include "Tiovivo.h"
 
 
 class ParticleSystem
@@ -46,6 +47,7 @@ public:
 	void changeExplosion() { explosionOn = !explosionOn; };
 
 	void addSomeParticles();
+	void generateFinalScene();
 
 	void muelleEstatico();
 	void muelleDoble();

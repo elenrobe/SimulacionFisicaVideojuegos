@@ -1,5 +1,6 @@
 #include "Particle.h"
 #include <iostream>
+#include <random>
 
 Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, Vector4 Color)
 {
@@ -41,7 +42,15 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double
 	this->color = color;
 	this->scale = scale;
 	pos = physx::PxTransform(Pos.x, Pos.y, Pos.z);
-	rI = new RenderItem(CreateShape(physx::PxSphereGeometry(scale)), &pos, color);
+	if(type == TIOVIVO)
+		rI = new RenderItem(CreateShape(physx::PxBoxGeometry(scale, 1, scale)), &pos, color);
+	else if (type == HORSE)
+		rI = new RenderItem(CreateShape(physx::PxBoxGeometry(scale*2, scale, scale)), &pos, color);
+	else if (type == BARRA)
+		rI = new RenderItem(CreateShape(physx::PxBoxGeometry(scale, scale*20, scale)), &pos, color);
+	else
+		rI = new RenderItem(CreateShape(physx::PxSphereGeometry(scale)), &pos, color);
+
 	alive = true;
 	this->type = type;
 	this->mass = mass;
@@ -87,7 +96,10 @@ void Particle::integrate(double t)
 	if(tiempoVida == -1){}
 	else if (tiempoVida > 0) {
 		tiempoVida--;
-		
+
+		//rI->shape->getGeometry()
+		//rI = new RenderItem(CreateShape(physx::PxSphereGeometry(scale)), &pos, color);
+
 	}
 	else {
 		alive = false;
@@ -108,4 +120,19 @@ Particle* Particle::clone() const
 std::vector<Particle*> Particle::explode()
 {
 	return std::vector<Particle*>();
+}
+
+Vector4 Particle::rndColor()
+{
+	std::random_device rnd;
+	std::default_random_engine gen_(rnd());
+	std::uniform_real_distribution<> distr(0, 1);
+
+	Vector4 color;
+
+	color.x = distr(gen_);
+	color.y = distr(gen_);
+	color.z = distr(gen_);
+	color.w = 1.0;
+	return color;
 }
