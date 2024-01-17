@@ -39,15 +39,15 @@ Tiovivo::Tiovivo(Vector3 pos, std::unique_ptr<ParticleForceRegistry>&  pFR)
 		float y = pos.y;
 		float z = pos.z + radio * std::cos(angle);
 
-		Particle* p0 = new Particle({ x,ini - offset * 4,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,255,0,1 }, 1.1, BARRA, 20);
+		Particle* p0 = new Particle({ x,ini - offset * 4,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,1,0,1 }, 1.1, BARRA, 20);
 
 		particles.push_back(p0);
 
-		Particle* p1 = new Particle({ x,ini - offset,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,255,0,1 }, 5, TIOVIVO, 20);
+		Particle* p1 = new Particle({ x,ini - offset,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,1,0,1 }, 5, TIOVIVO, 20);
 
 		particles.push_back(p1);
 
-		Particle* p2 = new Particle({ x,ini - offset * 2,z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,255,255,1 }, 4, HORSE, 20);
+		Particle* p2 = new Particle({ x,ini - offset * 2,z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,1,1,1 }, 4, HORSE, 20);
 
 		particles.push_back(p2);
 

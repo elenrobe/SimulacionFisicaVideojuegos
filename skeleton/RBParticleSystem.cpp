@@ -17,11 +17,11 @@ RBParticleSystem::RBParticleSystem(physx::PxPhysics* gPhysics, physx::PxScene* g
 
 void RBParticleSystem::generateFinalScene()
 {
-	physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(100, 1, 100));
-	_particles.push_back(new RBParticle({ 0,-100,0 }, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,0,0,1 }, 5, gPhysics, gScene, floor, 900));
+	physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(400, 1, 400));
+	_particles.push_back(new RBParticle({ 0,-80,0 }, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,0,0,1 }, 5, gPhysics, gScene, floor, 900));
 
-	Noria* noria = new Noria(Vector3(300, 0, 0), gPhysics, gScene);
-
+	generateNoria();
+	//generateParticles();
 
 	//buoyancy
 
@@ -39,6 +39,21 @@ void RBParticleSystem::generateFinalScene()
 
 	buoyancyForceGen = new BuoyancyForceGenerator(10.0, 1, 1000, Vector3(7, 50, 7));
 	rb_pFR->addRegistry(buoyancyForceGen, r->getDynamicRigid());*/
+}
+
+void RBParticleSystem::generateNoria()
+{
+	Noria* noria = new Noria(Vector3(-200, 0, 0), gPhysics, gScene);
+	
+	auto v = noria->getParticles();
+
+	for (RBParticle* p : v)
+	{
+		_particles.push_back(p);
+
+
+	}
+
 }
 
 void RBParticleSystem::update(double t)
@@ -153,7 +168,7 @@ void RBParticleSystem::addWhirlwind()
 void RBParticleSystem::addExplosion()
 {
 
-	explosionForceGen = new ExplosionForceGenerator(40, 1000, 1, Vector3(0, 20, 0));
+	explosionForceGen = new ExplosionForceGenerator(60, 500, 1, Vector3(0, 0, 0));
 
 	for (auto p : _particles)
 	{ 

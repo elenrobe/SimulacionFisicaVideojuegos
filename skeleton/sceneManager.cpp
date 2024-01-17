@@ -134,6 +134,7 @@ void SceneManager::shoot(char key)
 			rb_pSym->addExplosion();
 		}
 		else {
+			rb_pSym->addExplosion();
 
 			pSym->changeExplosion();
 			pSym->addExplosion();
@@ -184,6 +185,11 @@ void SceneManager::shoot(char key)
 	case 'M':
 	{
 		proyectiles.push_back(new Projectile(Projectile::LASER));
+		break;
+	}
+	case 'R':
+	{
+		rb_pSym->deleteAll();
 		break;
 	}
 	default:

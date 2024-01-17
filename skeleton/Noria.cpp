@@ -4,13 +4,15 @@ Noria::Noria(Vector3 pos, physx::PxPhysics* gPhysics, physx::PxScene* gScene)
 {
     float scale = 2;
     physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(1, 40, 15));
-    RBParticle* base = new RBParticle({ pos.x-15,pos.y-30,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,255,255,1 }, 5, gPhysics, gScene, shape, true, 100);
+    RBParticle* base = new RBParticle({ pos.x-15,pos.y-30,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,1,1,1 }, 5, gPhysics, gScene, shape, true, 100);
+    particles.push_back(base);
 
     physx::PxShape* shape2 = CreateShape(physx::PxSphereGeometry(8.0f));
 
     RBParticle* central = new RBParticle({ pos.x,pos.y,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,0,0,1 }, 5, gPhysics, gScene, shape2, true, 10);
     const int numCabins = 8;
     const float cabinRadius = 50;
+    particles.push_back(central);
 
 
     for (int i = 0; i < 12; ++i) {
@@ -24,8 +26,8 @@ Noria::Noria(Vector3 pos, physx::PxPhysics* gPhysics, physx::PxScene* gScene)
 
         physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(1, 1, 1));
 
-        RBParticle* cabina = new RBParticle({ x,y,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,0,0,1 }, 5, gPhysics, gScene, shape, true, 1);
-
+        RBParticle* cabina = new RBParticle({ x,y,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,0,0,1 }, 5, gPhysics, gScene, shape, true, 1);
+        particles.push_back(cabina);
     }
 
     // Create cabins and attach them to the hub
@@ -40,7 +42,8 @@ Noria::Noria(Vector3 pos, physx::PxPhysics* gPhysics, physx::PxScene* gScene)
 
         physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(6, 6, 6));
 
-        RBParticle* cabina = new RBParticle({ x,y,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0,255,0,1 }, 5, gPhysics, gScene, shape, false, 1);
+        RBParticle* cabina = new RBParticle({ x,y,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,0,0,1 }, 5, gPhysics, gScene, shape, false, 1);
+        particles.push_back(cabina);
 
       
         PxRevoluteJoint* joint = PxRevoluteJointCreate(*gPhysics, central->getStaticRigid(), central->getPos(), cabina->getDynamicRigid(), cabina->getPos());

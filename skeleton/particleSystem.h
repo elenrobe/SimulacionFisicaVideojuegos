@@ -47,8 +47,10 @@ public:
 	void changeExplosion() { explosionOn = !explosionOn; };
 
 	void addSomeParticles();
-	void generateFinalScene();
 
+	void generateFinalScene();
+	void createTiovivo();
+	void deleteAll();
 	void muelleEstatico();
 	void muelleDoble();
 	void bungee();

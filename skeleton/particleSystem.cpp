@@ -27,11 +27,16 @@ void ParticleSystem::generateFinalScene()
 	//createBuoyancyTest();
 	//setUpFireworks();
 	shootFirework(3);
+	createTiovivo();
+
+}
+void ParticleSystem::createTiovivo()
+{
 
 	Tiovivo* tiovivo = new Tiovivo(Vector3(0, 0, 0), pFR);
 	/*for (auto it = tiovivo->getParticles().begin(); it != tiovivo->getParticles().end(); ++it) {
 
-	
+
 		_particles.push_back(it);
 
 
@@ -42,6 +47,19 @@ void ParticleSystem::generateFinalScene()
 	{
 		_particles.push_back(p);
 
+
+	}
+}
+void ParticleSystem::deleteAll()
+{
+	for (int i = 0; i < _particles.size(); i++) {
+
+
+
+
+		pFR.get()->deleteParticleRegistry(_particles[i]);
+		delete _particles[i];
+		_particles.erase(_particles.begin() + i);
 
 	}
 }
