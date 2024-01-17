@@ -114,9 +114,13 @@ void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
 {
 	
 
-	if ((actor1->getName() == "bola" && actor2->getName() == "snowman") || (actor1->getName() == "snowman" && actor2->getName() == "bola"))
+	if ((actor1->getName() == "bola" && actor2->getName() == "snowman"))
 	{
+		sceneMng->checkColisions(actor2, actor1);
+	}
+	else if ((actor1->getName() == "snowman" && actor2->getName() == "bola")) {
 		sceneMng->checkColisions(actor1, actor2);
+
 	}
 
 

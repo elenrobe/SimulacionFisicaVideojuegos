@@ -81,17 +81,20 @@ void RBParticleSystem::shootBullet()
 }
 
 
-void RBParticleSystem::checkCollisions(physx::PxActor* actor1, physx::PxActor* actor2)
+void RBParticleSystem::checkCollisions(physx::PxActor* snowman, physx::PxActor* actor2)
 {
 	for (auto it = _particles.begin(); it != _particles.end(); it++) {
-		if (!(*it)->getIsStatic() && ((*it)->getDynamicRigid() == actor1 || (*it)->getDynamicRigid() == actor2)) {
+		if (!(*it)->getIsStatic() && ((*it)->getDynamicRigid() == snowman || (*it)->getDynamicRigid() == actor2)) {
 
-			if (actor1->getName() == "snowman") {
+			if (snowman->getName() == "snowman") {
 				cout << "COLISION1";
+				for (int i = 0; i < _snowmen.size(); i++) {
+					if (_snowmen[i]->getBola1()->getDynamicRigid() == snowman || _snowmen[i]->getBola1()->getDynamicRigid() == actor2) {
+						//_snowmen[i]->crece();
+						Vector3 pos = _snowmen[i]->getBola1()->getDynamicRigid()->getGlobalPose().p;
+						physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(2, 1, 2));
+						_particles.push_back(new RBParticle(pos, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,1,1,1 }, 5, gPhysics, gScene, floor, false, 900));
 
-				for (auto ite = _snowmen.begin(); ite != _snowmen.end(); ite++) {
-					if ((*ite)->getBola1()->getDynamicRigid() == actor1 || (*ite)->getBola1()->getDynamicRigid() == actor2) {
-						(*ite)->crece();
 
 					}
 				}
@@ -99,23 +102,15 @@ void RBParticleSystem::checkCollisions(physx::PxActor* actor1, physx::PxActor* a
 			if (actor2->getName() == "snowman") {
 				cout << "COLISION2";
 				for (int i = 0; i < _snowmen.size(); i++) {
-					if (_snowmen[i]->getBola1()->getDynamicRigid() == actor1 || _snowmen[i]->getBola1()->getDynamicRigid() == actor2) {
+					if (_snowmen[i]->getBola1()->getDynamicRigid() == snowman || _snowmen[i]->getBola1()->getDynamicRigid() == actor2) {
+						//_snowmen[i]->crece();
 						Vector3 pos = _snowmen[i]->getBola1()->getDynamicRigid()->getGlobalPose().p;
 						physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(2, 1, 2));
 						_particles.push_back(new RBParticle(pos, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,1,1,1 }, 5, gPhysics, gScene, floor, false, 900));
 
 
 					}
-				}/*
-				for (auto ite = _snowmen.begin(); ite != _snowmen.end(); ite++) {
-					if ((*ite)->getBola1()->getDynamicRigid() == actor1 || (*ite)->getBola1()->getDynamicRigid() == actor2) {
-						Vector3 pos = (*ite)->getBola1()->getDynamicRigid()->getGlobalPose().p;
-						physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(2, 1, 2));
-						_particles.push_back(new RBParticle(pos, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,1,1,1 }, 5, gPhysics, gScene, floor,false, 900));
-
-
-					}
-				}*/
+				}
 			}
 		}
 	}

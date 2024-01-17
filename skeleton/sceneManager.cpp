@@ -225,8 +225,8 @@ void SceneManager::proyectoFinal()
 	rb_pSym = new RBParticleSystem(gPhysics, gScene);
 }
 
-void SceneManager::checkColisions(physx::PxActor* actor1, physx::PxActor* actor2)
+void SceneManager::checkColisions(physx::PxActor* snowman, physx::PxActor* actor2)
 {
-	rb_pSym->checkCollisions(actor1, actor2);
+	rb_pSym->checkCollisions(snowman, actor2);
 }
 
