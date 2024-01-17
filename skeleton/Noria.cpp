@@ -50,19 +50,6 @@ Noria::Noria(Vector3 pos, physx::PxPhysics* gPhysics, physx::PxScene* gScene)
         joint->setDriveVelocity(0.4f);  // Set rotation speed
         joint->setRevoluteJointFlag(PxRevoluteJointFlag::eDRIVE_ENABLED, true);
 
-        //physx::PxShape* shape3 = CreateShape(physx::PxBoxGeometry(2, 5, 2));
-
-        //x = 0;
-
-        //y = cabinRadius/2 * std::sin(angle);
-        //z = cabinRadius/2 * std::cos(angle);
-        //RBParticle* s = new RBParticle({ x,y,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 255,0,0,1 }, 5, gPhysics, gScene, shape3, false, 1);
-
-        //PxRevoluteJoint* joint2 = PxRevoluteJointCreate(*gPhysics, central->getStaticRigid(), central->getPos(), s->getDynamicRigid(), s->getPos());
-        //joint2->setDriveVelocity(0.3f);  // Set rotation speed
-        //joint2->setRevoluteJointFlag(PxRevoluteJointFlag::eDRIVE_ENABLED, true);
-
-        
 
     }
 

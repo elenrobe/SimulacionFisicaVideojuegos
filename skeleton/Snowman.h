@@ -26,7 +26,11 @@ public:
 
 	RBParticle* getBola1() { return bola1; };
 	RBParticle* getBola2() { return bola2; };
+	RBParticle* getEye2() { return eye2; };
+	RBParticle* getEye1() { return eye1; };
 
+
+	int getHits() { return numHits; };
 	void crece();
 };
 
