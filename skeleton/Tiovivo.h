@@ -35,13 +35,5 @@ public:
 		return forceGenerators;
 	}
 
-	/*physx::PxShape* B = CreateShape(physx::PxBoxGeometry(2, 2, 2));
-	RBParticle* r = new RBParticle({ 7,60,7 }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,1,0,1 }, 5, gPhysics, gScene, B, false, 900);
-	_particles.push_back(r);
-
-
-	buoyancyForceGen = new BuoyancyForceGenerator(10.0, 1, 1000, Vector3(7, 50, 7));
-	rb_pFR->addRegistry(buoyancyForceGen, r->getDynamicRigid());*/
-
 };
 
