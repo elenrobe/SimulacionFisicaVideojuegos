@@ -12,7 +12,7 @@ vector<Particle*> Firework::explode()
 
 		vector<Particle*> generations;
 		//si es de cada tipo que explote o no
-		Particle* p = new Particle(pos.p, vel, acc, damping, 100, rndColor(), scale, SPHERE, mass);
+		Particle* p = new Particle(pos.p, vel, acc, damping, 100, color, scale, SPHERE, mass);
 
 		p->getPos().q = GetCamera()->getTransform().q;
 		CircleParticleGenerator* g = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p, 4);
@@ -22,7 +22,6 @@ vector<Particle*> Firework::explode()
 		{
 			generations.push_back(r);
 		}
-		cout << "1";
 
 		return generations;
 	}
@@ -30,7 +29,7 @@ vector<Particle*> Firework::explode()
 
 		vector<Particle*> generations;
 		//si es de cada tipo que explote o no
-		Firework* p = new Firework(pos.p, vel, acc, damping, 100, rndColor(), scale, mass, type-1);
+		Firework* p = new Firework(pos.p, vel, acc, damping, 100, color, scale, mass, type-1);
 
 		CircleParticleGenerator* g = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p, 6);
 		generations.push_back(p);
@@ -39,7 +38,6 @@ vector<Particle*> Firework::explode()
 		{
 			generations.push_back(r);
 		}
-		cout << "2";
 		return generations;
 	}
 

@@ -4,7 +4,7 @@ Noria::Noria(Vector3 pos, physx::PxPhysics* gPhysics, physx::PxScene* gScene)
 {
     float scale = 2;
     physx::PxShape* shape = CreateShape(physx::PxBoxGeometry(1, 40, 15));
-    RBParticle* base = new RBParticle({ pos.x-15,pos.y-30,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,1,0,1 }, 5, gPhysics, gScene, shape, true, 100);
+    RBParticle* base = new RBParticle({ pos.x-15,pos.y-30,pos.z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 0.7,0.7,0,1 }, 5, gPhysics, gScene, shape, true, 100);
     particles.push_back(base);
 
     physx::PxShape* shape2 = CreateShape(physx::PxSphereGeometry(8.0f));

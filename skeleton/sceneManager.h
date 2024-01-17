@@ -41,6 +41,7 @@ public:
 	void keyPressed(char key);
 
 	void proyectoFinal();
+	void checkColisions(physx::PxActor* actor1, physx::PxActor* actor2);
 
 };
 

@@ -112,8 +112,15 @@ void keyPress(unsigned char key, const PxTransform& camera)
 
 void onCollision(physx::PxActor* actor1, physx::PxActor* actor2)
 {
-	PX_UNUSED(actor1);
-	PX_UNUSED(actor2);
+	
+
+	if ((actor1->getName() == "bola" && actor2->getName() == "snowman") || (actor1->getName() == "snowman" && actor2->getName() == "bola"))
+	{
+		sceneMng->checkColisions(actor1, actor2);
+	}
+
+
+	
 }
 
 

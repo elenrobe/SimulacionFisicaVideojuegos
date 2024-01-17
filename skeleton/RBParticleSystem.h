@@ -11,12 +11,15 @@
 #include "RBParticleGenerator.h"
 #include "RBUniformParticleGenerator.h"
 #include "Noria.h"
+#include "RBProjectile.h"
+#include "Snowman.h"
 
 class RBParticleSystem
 {
 
 	std::vector<RBParticle*> _particles;
 	std::vector<RBParticleGenerator*> _particle_generators;
+	std::vector<Snowman*> _snowmen;
 
 	std::unique_ptr<RBParticleForceRegistry> rb_pFR;
 	GravityForceGenerator* gravityForceGen = nullptr;
@@ -38,6 +41,10 @@ public:
 
 	void generateFinalScene(); //proyecto final
 	void generateNoria(); //proyecto final
+	void generateSnowman(); //proyecto final
+
+	void shootBullet(); //proyecto final
+	void checkCollisions(physx::PxActor* actor1, physx::PxActor* actor2);
 
 
 	void generateParticles();

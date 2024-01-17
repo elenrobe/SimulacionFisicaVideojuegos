@@ -87,9 +87,7 @@ void SceneManager::integrate(double t)
 	}
 
 
-	if(rigidBodyOn)
 		rb_pSym->update(t);
-	else
 		pSym->update(t);
 }
 
@@ -200,6 +198,12 @@ void SceneManager::shoot(char key)
 
 		break;
 	}
+	case 'C':
+	{
+		rb_pSym->shootBullet();
+
+		break;
+	}
 	default:
 		//rb_pSym->deleteAll();
 		//proyectiles.push_back(new Projectile(Projectile::BASE));
@@ -219,5 +223,10 @@ void SceneManager::proyectoFinal()
 	createParticleSystem();
 
 	rb_pSym = new RBParticleSystem(gPhysics, gScene);
+}
+
+void SceneManager::checkColisions(physx::PxActor* actor1, physx::PxActor* actor2)
+{
+	rb_pSym->checkCollisions(actor1, actor2);
 }
 

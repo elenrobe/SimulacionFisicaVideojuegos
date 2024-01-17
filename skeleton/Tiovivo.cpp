@@ -62,11 +62,14 @@ Tiovivo::Tiovivo(Vector3 pos, std::unique_ptr<ParticleForceRegistry>&  pFR)
 
 		auto aGen = new AnchoredSpringForceGenerator(50, 20, { x,ini - offset,z });
 
+		forceGenerators.push_back(aGen);
+
 		Particle* pMuelle = new Particle({ x,ini - offset * 2,z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,1,1,1 }, 4, HORSE, 20);
 		particles.push_back(pMuelle);
 
 		//springGen_= new SpringForceGenerator(1,5,pFija);
 		GravityForceGenerator* gGen = new GravityForceGenerator({ 0.0, -9.8, 0.0 });
+		forceGenerators.push_back(gGen);
 
 		//windForceGen = new WindForceGenerator(-1, 0, Vector3(-10, 0, -10), { 7,50,7 }, 20);
 

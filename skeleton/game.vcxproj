@@ -278,11 +278,13 @@
     <ClCompile Include="RBParticleForceRegistry.cpp" />
     <ClCompile Include="RBParticleGenerator.cpp" />
     <ClCompile Include="RBParticleSystem.cpp" />
+    <ClCompile Include="RBProjectile.cpp" />
     <ClCompile Include="RBUniformParticleGenerator.cpp" />
     <ClCompile Include="RenderUtils.cpp" />
     <ClCompile Include="Render\Camera.cpp" />
     <ClCompile Include="Render\Render.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Snowman.cpp" />
     <ClCompile Include="SpringForceGenerator.cpp" />
     <ClCompile Include="Tiovivo.cpp" />
     <ClCompile Include="UniformParticleGenerator.cpp" />
@@ -315,11 +317,13 @@
     <ClInclude Include="RBParticleForceRegistry.h" />
     <ClInclude Include="RBParticleGenerator.h" />
     <ClInclude Include="RBParticleSystem.h" />
+    <ClInclude Include="RBProjectile.h" />
     <ClInclude Include="RBUniformParticleGenerator.h" />
     <ClInclude Include="RenderUtils.hpp" />
     <ClInclude Include="Render\Camera.h" />
     <ClInclude Include="Render\Render.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Snowman.h" />
     <ClInclude Include="SpringForceGenerator.h" />
     <ClInclude Include="Tiovivo.h" />
     <ClInclude Include="UniformParticleGenerator.h" />

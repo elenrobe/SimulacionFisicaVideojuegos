@@ -1,4 +1,5 @@
 #include "AnchoredSpringForceGenerator.h"
+#include <iostream>
 
 AnchoredSpringForceGenerator::AnchoredSpringForceGenerator(double k, double resting, const Vector3& anchor_pos) :
 	SpringForceGenerator(k, resting, nullptr) {
@@ -8,6 +9,5 @@ AnchoredSpringForceGenerator::AnchoredSpringForceGenerator(double k, double rest
 }
 
 AnchoredSpringForceGenerator::~AnchoredSpringForceGenerator() {
-
 	delete other_;
 }

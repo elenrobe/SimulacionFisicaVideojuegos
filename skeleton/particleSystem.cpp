@@ -49,6 +49,10 @@ void ParticleSystem::createTiovivo()
 
 
 	}
+
+
+	auto v2 = tiovivo->getFGens();
+
 }
 void ParticleSystem::deleteAll()
 {
@@ -58,6 +62,7 @@ void ParticleSystem::deleteAll()
 
 
 		pFR.get()->deleteParticleRegistry(_particles[i]);
+
 		delete _particles[i];
 		_particles.erase(_particles.begin() + i);
 
@@ -71,6 +76,8 @@ void ParticleSystem::deleteAll()
 		_particle_generators.erase(_particle_generators.begin() + i);
 
 	}
+	pFR.get()->deleteForce();
+
 }
 ParticleSystem::~ParticleSystem()
 {
@@ -120,7 +127,6 @@ void ParticleSystem::update(double t)
 			{
 				//Firework* f = dynamic_cast<Firework*>(_particles[i]);
 				if (_particles[i] != nullptr) {
-					cout << "EXPLOTA";
 					vector<Particle*> v = _particles[i]->explode();
 					//_particles[i]->kill();
 					for (int i = 0; i < v.size();i++)
@@ -186,8 +192,8 @@ void ParticleSystem::shootFirework(int type)
 	double mass = 1;
 
 	for (int i = 0; i < 5; i++) {
-		float x = -120 + i * 30;
-		Firework* f = new Firework({ x, 0, -70 }, vel, acc, damp, lifeTime, color, scale, mass, type);
+		float x = -120 + i * 50;
+		Firework* f = new Firework({ x, 0, -70 }, vel, acc, damp, lifeTime, rndColor(), scale, mass, type);
 		//Firework* f = _fireworks_pool[0]->clone();
 		_particles.push_back(f);
 
@@ -227,7 +233,6 @@ void ParticleSystem::onParticleDeath(Particle* p)
 		Firework* f = dynamic_cast<Firework*>(p);
 		if (f != nullptr) {
 			f->explode();
-			cout << "EXPLOTA";
 			for (auto p : f->explode())
 				_particles.push_back(p);
 		}

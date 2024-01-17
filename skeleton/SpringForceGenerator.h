@@ -15,7 +15,10 @@ public:
 
 	inline void setK(double k) { k_ = k; }
 	inline double getK() { return k_; }
-	virtual ~SpringForceGenerator() {}
+	virtual ~SpringForceGenerator() {
+		delete other_;
+	}
+	Particle* getOther() { return other_; }
 
 protected:
 	double k_; // Elastic Coeff.

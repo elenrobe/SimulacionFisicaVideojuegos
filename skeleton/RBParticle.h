@@ -20,6 +20,9 @@ class RBParticle
 		void setPos(Vector3 newPos) { pos.p = newPos; };
 		void setAcc(Vector3 newAcc) { acc = newAcc; }
 		void setMass(float newMass) { mass = newMass; }
+		void setVel(Vector3 vel) { lVel = vel;
+		dynamicR->setLinearVelocity(lVel);
+		}
 
 		void kill() { alive = false; };
 		virtual RBParticle* clone() const;
