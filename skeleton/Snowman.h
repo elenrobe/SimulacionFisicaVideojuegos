@@ -6,7 +6,6 @@ class Snowman
 {
 	RBParticle* bola1;
 	RBParticle* bola2;
-	RBParticle* bola3;
 
 	std::vector<RBParticle*> particles;
 	int numHits = 0;

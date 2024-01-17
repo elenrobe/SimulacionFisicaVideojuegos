@@ -1,6 +1,8 @@
 # SimulacionFisicaVideojuegos Proyecto Final
 ## MANUAL DEL USUARIO
 
+La idea del prototipo de juego era tener varias decoraciones de feria, como son la noria y el tiovivo.
+Si le das a alguna de las 3 bolas de nieve blancas que hay delante de la noria se les añadirá otra bola igual encima (la idea era hacer un muñeco de nieve);
 
 ### Teclas
 
