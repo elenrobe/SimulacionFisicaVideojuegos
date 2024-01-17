@@ -18,7 +18,7 @@ RBParticleSystem::RBParticleSystem(physx::PxPhysics* gPhysics, physx::PxScene* g
 void RBParticleSystem::generateFinalScene()
 {
 	physx::PxShape* floor = CreateShape(physx::PxBoxGeometry(400, 1, 400));
-	_particles.push_back(new RBParticle({ 0,-80,0 }, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 0,0,0,1 }, 5, gPhysics, gScene, floor, 900));
+	_particles.push_back(new RBParticle({ 0,-80,0 }, { 0,3,0 }, { 2,0,0 }, 0.998, -1, { 1,1,1,1 }, 5, gPhysics, gScene, floor, 900));
 
 	generateNoria();
 	//generateParticles();

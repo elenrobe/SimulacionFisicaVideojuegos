@@ -34,6 +34,7 @@ vector<Particle*> CircleParticleGenerator::generateParticles()
 
             p->setVel({ velo.x * _mean_vel.x,velo.y * _mean_vel.y,velo.z * _mean_vel.z });
             p->setPos(posi);
+            p->setPosQ(physx::PxQuat(physx::PxPi / 2.0f, physx::PxVec3(1.0f, 0.0f, 0.0f)));
 
             vP.push_back(p);
         }

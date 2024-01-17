@@ -14,6 +14,7 @@ vector<Particle*> Firework::explode()
 		//si es de cada tipo que explote o no
 		Particle* p = new Particle(pos.p, vel, acc, damping, 100, rndColor(), scale, SPHERE, mass);
 
+		p->getPos().q = GetCamera()->getTransform().q;
 		CircleParticleGenerator* g = new CircleParticleGenerator({ 5, 5, 5 }, 1, 10, p, 4);
 		generations.push_back(p);
 

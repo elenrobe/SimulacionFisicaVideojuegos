@@ -33,7 +33,7 @@ void ParticleSystem::generateFinalScene()
 void ParticleSystem::createTiovivo()
 {
 
-	Tiovivo* tiovivo = new Tiovivo(Vector3(0, 0, 0), pFR);
+	Tiovivo* tiovivo = new Tiovivo(Vector3(-50, -10, -200), pFR);
 	/*for (auto it = tiovivo->getParticles().begin(); it != tiovivo->getParticles().end(); ++it) {
 
 
@@ -60,6 +60,15 @@ void ParticleSystem::deleteAll()
 		pFR.get()->deleteParticleRegistry(_particles[i]);
 		delete _particles[i];
 		_particles.erase(_particles.begin() + i);
+
+	}
+	for (int i = 0; i < _particle_generators.size(); i++) {
+
+
+
+
+		delete _particle_generators[i];
+		_particle_generators.erase(_particle_generators.begin() + i);
 
 	}
 }
@@ -167,19 +176,30 @@ void ParticleSystem::generateFireworkSystem()
 void ParticleSystem::shootFirework(int type)
 {
 
-	Vector3 pos = { 0.0, 10.0, 0.0 };
+	Vector3 pos = { 0.0, 10.0, 50.0 };
 	Vector3 vel = { 0,50,0 };
 	Vector3 acc = { 0.0f, -9.8f, 0.0f };
 	double damp = 0.95;
-	float lifeTime =100;
+	float lifeTime =50;
 	Vector4 color = { 255,0,0,1 };
 	float scale = 1;
 	double mass = 1;
 
-	Firework* f = new Firework(pos, vel, acc, damp, lifeTime, color, scale, mass, type);
-	//Firework* f = _fireworks_pool[0]->clone();
+	for (int i = 0; i < 5; i++) {
+		float x = -120 + i * 30;
+		Firework* f = new Firework({ x, 0, -70 }, vel, acc, damp, lifeTime, color, scale, mass, type);
+		//Firework* f = _fireworks_pool[0]->clone();
+		_particles.push_back(f);
 
-	_particles.push_back(f);
+
+	}
+	//Firework* f = new Firework({ -90.0, 0, -70 }, vel, acc, damp, lifeTime, color, scale, mass, type);
+	////Firework* f = _fireworks_pool[0]->clone();
+
+	//Firework* f2 = new Firework({ -30.0, 0, -70 }, vel, acc, damp, lifeTime, color, scale, mass, type);
+	//_particles.push_back(f2);
+
+	//_particles.push_back(f);
 
 }
 void ParticleSystem::setUpFireworks()
@@ -235,17 +255,17 @@ void ParticleSystem::createManguerSystem()
 
 void ParticleSystem::createNieblaSystem()
 {
-	Vector3 pos = { 0.0, 10.0, 0.0 };
+	Vector3 pos = { 0.0, 300, 0.0 };
 	Vector3 vel = { 0,0,0 };
 	Vector3 acc = { 0.0f, -9.8f, 0.0f };
 	double damp = 0.99;
-	float lifeTime = 150;
-	Vector4 color = { 255,255,255,1 };
+	float lifeTime = 300;
+	Vector4 color = { 1,1,1,0.5 };
 	float scale = 2;
 	double mass = 1;
 	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale, SPHERE, mass);
 
-	GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator( { 5, 0, 5 }, { 0, 0, 0 }, 0.4, 5, p, { 60,10,60 }, { 5,5,5 });
+	GaussianParticleGenerator* gaussianGenerator = new GaussianParticleGenerator( { 100, 80, 80 }, { 0, 0, 0 }, 0.001, 1, p, { 300,100,200 }, { 3,3,3 });
 
 	_particle_generators.push_back(gaussianGenerator);
 }

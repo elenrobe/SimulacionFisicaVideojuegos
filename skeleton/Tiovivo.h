@@ -7,6 +7,8 @@
 #include "GravityForceGenerator.h"
 #include "CircleForceGenerator.h"
 #include "SpringForceGenerator.h"
+#include "AnchoredSpringForceGenerator.h"
+
 
 class Tiovivo
 {

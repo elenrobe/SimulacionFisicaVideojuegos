@@ -189,7 +189,15 @@ void SceneManager::shoot(char key)
 	}
 	case 'R':
 	{
+		pSym->deleteAll();
+
 		rb_pSym->deleteAll();
+		break;
+	}
+	case 'F':
+	{
+		pSym->shootFirework(2);
+
 		break;
 	}
 	default:

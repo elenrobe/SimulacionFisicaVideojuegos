@@ -29,6 +29,8 @@ public:
 	void setColor(Vector4 newColor) {rI->color = newColor;};
 	void setVel(Vector3 newVel) { vel = newVel; };
 	void setPos(Vector3 newPos) { pos.p = newPos; };
+	void setPosQ(physx::PxQuat newPosQ) { pos.q = newPosQ; };
+
 	void setAcc(Vector3 newAcc) { acc = newAcc; }
 	void setMass(float newMass) { mass = newMass; }
 	void setDamping(float newDamping) { damping = newDamping; };

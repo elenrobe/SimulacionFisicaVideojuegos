@@ -47,16 +47,31 @@ Tiovivo::Tiovivo(Vector3 pos, std::unique_ptr<ParticleForceRegistry>&  pFR)
 
 		particles.push_back(p1);
 
-		Particle* p2 = new Particle({ x,ini - offset * 2,z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,1,1,1 }, 4, HORSE, 20);
+		//Particle* p2 = new Particle({ x,ini - offset * 2,z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,1,1,1 }, 4, HORSE, 20);
 
-		particles.push_back(p2);
+		//particles.push_back(p2);
 
-		auto f2 = new SpringForceGenerator(30, offset * 2, p1);
-		pFR->addRegistry(f2, p2);
+		//auto f2 = new SpringForceGenerator(30, offset * 2, p1);
+		//pFR->addRegistry(f2, p2);
 
-		pFR->addRegistry(grav, p2);
-		auto d2 = new ParticleDragGenerator(0.8, 0.8);
-		pFR->addRegistry(d2, p2);
+		//pFR->addRegistry(grav, p2);
+		//auto d2 = new ParticleDragGenerator(0.8, 0.8);
+		//pFR->addRegistry(d2, p2);
+
+
+
+		auto aGen = new AnchoredSpringForceGenerator(50, 20, { x,ini - offset,z });
+
+		Particle* pMuelle = new Particle({ x,ini - offset * 2,z }, { 0,0,0 }, { 0,0,0 }, 1, -1, { 0,1,1,1 }, 4, HORSE, 20);
+		particles.push_back(pMuelle);
+
+		//springGen_= new SpringForceGenerator(1,5,pFija);
+		GravityForceGenerator* gGen = new GravityForceGenerator({ 0.0, -9.8, 0.0 });
+
+		//windForceGen = new WindForceGenerator(-1, 0, Vector3(-10, 0, -10), { 7,50,7 }, 20);
+
+		pFR.get()->addRegistry(aGen, pMuelle);
+		pFR.get()->addRegistry(gGen, pMuelle);
 	}
 
 

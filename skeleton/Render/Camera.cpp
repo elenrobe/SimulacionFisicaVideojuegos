@@ -44,6 +44,8 @@ Camera::Camera(const PxVec3& eye, const PxVec3& dir)
 	mDir = dir.getNormalized();
 	mMouseX = 0;
 	mMouseY = 0;
+
+	mEye += PxVec3(0, -80, 0);
 }
 
 void Camera::handleMouse(int button, int state, int x, int y)
