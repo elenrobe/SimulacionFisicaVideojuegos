@@ -6,8 +6,7 @@ class Snowman
 {
 	RBParticle* bola1;
 	RBParticle* bola2;
-	RBParticle* eye1;
-	RBParticle* eye2;
+	RBParticle* bola3;
 
 	std::vector<RBParticle*> particles;
 	int numHits = 0;
@@ -26,9 +25,6 @@ public:
 
 	RBParticle* getBola1() { return bola1; };
 	RBParticle* getBola2() { return bola2; };
-	RBParticle* getEye2() { return eye2; };
-	RBParticle* getEye1() { return eye1; };
-
 
 	int getHits() { return numHits; };
 	void crece();

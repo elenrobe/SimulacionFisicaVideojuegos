@@ -44,6 +44,7 @@ public:
 	void generateSnowman(); //proyecto final
 
 	void shootBullet(); //proyecto final
+	void shootCannon();
 	void checkCollisions(physx::PxActor* snowman, physx::PxActor* actor2);
 
 

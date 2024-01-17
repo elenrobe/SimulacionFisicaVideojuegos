@@ -19,7 +19,9 @@ class RBParticle
 		void setColor(Vector4 newColor) { rI->color = newColor; };
 		void setPos(Vector3 newPos) { pos.p = newPos; };
 		void setAcc(Vector3 newAcc) { acc = newAcc; }
-		void setMass(float newMass) { mass = newMass; }
+		void setMass(float newMass) { mass = newMass; 
+		PxRigidBodyExt::updateMassAndInertia(*dynamicR, mass);
+		}
 		void setVel(Vector3 vel) { lVel = vel;
 		dynamicR->setLinearVelocity(lVel);
 		}

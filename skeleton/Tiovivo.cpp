@@ -43,6 +43,14 @@ Tiovivo::Tiovivo(Vector3 pos, std::unique_ptr<ParticleForceRegistry>&  pFR)
 
 		particles.push_back(p0);
 
+		Particle* base1 = new Particle({ x,ini,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,1,0,1 }, 30, BASE, 20);
+
+		particles.push_back(base1);
+
+		Particle* base2 = new Particle({ x,ini-60,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,1,0,1 }, 30, BASE, 20);
+
+		particles.push_back(base2);
+
 		Particle* p1 = new Particle({ x,ini - offset,z }, { 0,0,0 }, { 0,0,0 }, 0.998, -1, { 1,1,0,1 }, 5, TIOVIVO, 20);
 
 		particles.push_back(p1);

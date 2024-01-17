@@ -37,17 +37,9 @@ void Snowman::crece()
 		}
 		else if (numHits == 1) {
 
-			//eye1->getDynamicRigid()->setName("snowman");
-			//particles.push_back(eye1);
 			numHits++;
 
 		}
-		//else if (numHits == 2) {
-		//	//eye2->getDynamicRigid()->setName("snowman");
-		//	particles.push_back(eye2);
-		//	numHits++;
-
-		//}
 		
 	}
 }

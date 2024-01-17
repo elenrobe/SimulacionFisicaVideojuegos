@@ -13,25 +13,11 @@ RBProjectile::RBProjectile(TYPE currentShotType, physx::PxPhysics* gPhysics, phy
 		setColor({ 255, 255, 255, 1 });
 		break;
 	case ARTILLERY:
-		setMass(200.0f); // 200.0 Kg
+		setMass(900.0f); // 200.0 Kg
 		setVel(dir * 30);
 		setAcc(Vector3(0.0f, -20.0f, 0.0f));
 		setColor({ 0, 0, 0, 1 });
 
-		break;
-	case FIREBALL:
-		setMass(1.0f); // 1.0 Kg
-		setVel(dir * 20);
-		setColor({ 255, 0, 0, 1 });
-		break;
-	case LASER:
-		setMass(0.1f); // almost no weight
-		setColor({ 0, 255, 255, 1 });
-		break;
-	case BASE:
-		setMass(0.5f); // almost no weight
-		setVel(GetCamera()->getDir() * 9);
-		setColor({ 0, 255, 0, 1 });
 		break;
 	}
 }

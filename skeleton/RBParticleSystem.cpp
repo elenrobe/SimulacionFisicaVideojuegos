@@ -83,6 +83,13 @@ void RBParticleSystem::shootBullet()
 
 }
 
+void RBParticleSystem::shootCannon()
+{
+	RBProjectile* p = new RBProjectile(RBProjectile::ARTILLERY, gPhysics, gScene);
+
+	_particles.push_back(p);
+
+}
 
 void RBParticleSystem::checkCollisions(physx::PxActor* snowman, physx::PxActor* actor2)
 {

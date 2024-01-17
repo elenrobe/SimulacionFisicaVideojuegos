@@ -7,7 +7,7 @@ WhirlwindForceGenerator::WhirlwindForceGenerator(const float k1, const float k2,
 	origin_ = origin;
 	varY_ = variabilidadY;
 	K_ = K;
-	r_ = 100;
+	r_ = 400;
 };
 void WhirlwindForceGenerator::updateForce(Particle* particle, double t)
 {

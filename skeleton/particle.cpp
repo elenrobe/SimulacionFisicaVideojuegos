@@ -48,6 +48,8 @@ Particle::Particle(Vector3 Pos, Vector3 Vel, Vector3 Acc, double damping, double
 		rI = new RenderItem(CreateShape(physx::PxBoxGeometry(scale*2, scale, scale)), &pos, color);
 	else if (type == BARRA)
 		rI = new RenderItem(CreateShape(physx::PxBoxGeometry(scale, scale*20, scale)), &pos, color);
+	else if (type == BASE)
+		rI = new RenderItem(CreateShape(physx::PxBoxGeometry(scale, 4, scale)), &pos, color);
 	else
 		rI = new RenderItem(CreateShape(physx::PxSphereGeometry(scale)), &pos, color);
 

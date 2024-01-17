@@ -28,7 +28,7 @@ void ParticleSystem::generateFinalScene()
 	//setUpFireworks();
 	shootFirework(3);
 	createTiovivo();
-
+	createFuegos();
 }
 void ParticleSystem::createTiovivo()
 {
@@ -53,6 +53,24 @@ void ParticleSystem::createTiovivo()
 
 	auto v2 = tiovivo->getFGens();
 
+}
+void ParticleSystem::createFuegos()
+{
+	Vector3 pos = { -50, -10, -200 };
+	Vector3 vel = { 0,0,0 };
+	Vector3 acc = { 0.0f, -9.8f, 0.0f };
+	double damp = 0.95;
+	float lifeTime = 150;
+	Vector4 color = { 1,0,0,1 };
+	float scale = 1;
+	double mass = 1;
+
+	Particle* p = new Particle(pos, vel, acc, damp, lifeTime, color, scale, HORSE, mass);
+
+
+	UniformParticleGenerator* uniformGenerator = new UniformParticleGenerator(pos, { 0, 30, 0 }, 0.1, p, { 1,1,1 }, { 6,20,6 });
+
+	_particle_generators.push_back(uniformGenerator);
 }
 void ParticleSystem::deleteAll()
 {
@@ -258,7 +276,7 @@ void ParticleSystem::createManguerSystem()
 	_particle_generators.push_back(uniformGenerator);
 }
 
-void ParticleSystem::createNieblaSystem()
+void ParticleSystem::createNieveSystem()
 {
 	Vector3 pos = { 0.0, 300, 0.0 };
 	Vector3 vel = { 0,0,0 };
@@ -319,14 +337,14 @@ void ParticleSystem::addGravity()
 void ParticleSystem::addWind()
 {
 
-	windForceGen = new WindForceGenerator(-1, 0, Vector3(10, 100, -10), { 7,50,7 }, 100);
+	windForceGen = new WindForceGenerator(1, 0, Vector3(-50, 10, 40), { -50, 0, -200 }, 100);
 
 }
 
 void ParticleSystem::addWhirlwind()
 {
-	whirlwindForceGen = new WhirlwindForceGenerator(1, 0, 1.0, Vector3(9, 9, 9), { 7,50,7 }, 100);
-
+	//whirlwindForceGen = new WhirlwindForceGenerator(1, 0, 1.0, Vector3(9, 9, 9), { 7,50,7 }, 100);
+	whirlwindForceGen = new WhirlwindForceGenerator(4, 0, 5.0, Vector3(10, 10, 10), { 0, 0, 0 }, 100);
 }
 
 void ParticleSystem::addExplosion()

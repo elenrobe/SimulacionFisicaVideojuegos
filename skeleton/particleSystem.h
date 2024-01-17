@@ -33,7 +33,7 @@ public:
 	void setUpFireworks();
 	void onParticleDeath(Particle* p);
 	void createManguerSystem();
-	void createNieblaSystem();
+	void createNieveSystem();
 	void createFireSystem();
 	Vector4 rndColor();
 
@@ -50,7 +50,11 @@ public:
 
 	void generateFinalScene();
 	void createTiovivo();
+	void createFuegos();
+
 	void deleteAll();
+
+
 	void muelleEstatico();
 	void muelleDoble();
 	void bungee();

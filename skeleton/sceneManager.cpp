@@ -127,62 +127,18 @@ void SceneManager::shoot(char key)
 	}
 	case 'K':
 	{
+		rb_pSym->addExplosion();
 
-		if (rigidBodyOn) {
-			rb_pSym->addExplosion();
-		}
-		else {
-			rb_pSym->addExplosion();
-
-			pSym->changeExplosion();
-			pSym->addExplosion();
-		}
-		break;
-	}
-	case 'O':
-	{
-		if (rigidBodyOn) {
-			rb_pSym->createManguerSystem();
-		}
-		else {
-
-			pSym->createManguerSystem();
-		}	
 		break;
 	}
 	case 'P':
 	{
-		if (!rigidBodyOn)
-			pSym->createNieblaSystem();
-		break;
-	}
-	case 'L':
-	{
-		if(!rigidBodyOn)
-			pSym->addSomeParticles();
-		else {
-			rb_pSym->generateParticles();
-		}
+		pSym->createNieveSystem();
 		break;
 	}
 	case 'V':
 	{
-		proyectiles.push_back(new Projectile(Projectile::ARTILLERY));
-		break;
-	}
-	case 'B':
-	{
-		proyectiles.push_back(new Projectile(Projectile::PISTOL));
-		break;
-	}
-	case 'N':
-	{
-		proyectiles.push_back(new Projectile(Projectile::FIREBALL));
-		break;
-	}
-	case 'M':
-	{
-		proyectiles.push_back(new Projectile(Projectile::LASER));
+		rb_pSym->shootCannon();
 		break;
 	}
 	case 'R':

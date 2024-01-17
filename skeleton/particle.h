@@ -5,7 +5,7 @@
 
 enum ParticleType
 {
-	SPHERE, FIREWORK, HORSE, TIOVIVO, BARRA
+	SPHERE, FIREWORK, HORSE, TIOVIVO, BARRA, BASE
 };
 class Particle
 {
